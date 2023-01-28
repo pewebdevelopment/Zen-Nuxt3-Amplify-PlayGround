@@ -19,7 +19,7 @@ import BaseButtons from "@/components/BaseButtons.vue";
 import UserCard from "@/components/UserCard.vue";
 import { Storage } from "@aws-amplify/storage";
 
-import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
+import SectionTitleLineWithButton from "@/components/Sections/SectionTitleLineWithButton.vue";
 
 const mainStore = useMainStore();
 
