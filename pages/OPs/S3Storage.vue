@@ -8,15 +8,15 @@ import {
   mdiFormTextboxPassword,
   mdiCreditCardOutline,
 } from "@mdi/js";
-import SectionMain from "@/components/SectionMain.vue";
+import SectionMain from "@/components/Sections/SectionMain.vue";
 import CardBox from "@/components/Cards/CardBox.vue";
-import BaseDivider from "@/components/BaseDivider.vue";
-import FormField from "@/components/FormField.vue";
-import FormControl from "@/components/FormControl.vue";
-import FormFilePicker from "@/components/FormFilePicker.vue";
-import BaseButton from "@/components/BaseButton.vue";
-import BaseButtons from "@/components/BaseButtons.vue";
-import UserCard from "@/components/UserCard.vue";
+import BaseDivider from "@/components/NavBar/BaseDivider.vue";
+import FormField from "@/components/Forms/FormField.vue";
+import FormControl from "@/components/Forms/FormControl.vue";
+import FormFilePicker from "@/components/Forms/FormFilePicker.vue";
+import BaseButton from "@/components/Buttons/BaseButton.vue";
+import BaseButtons from "@/components/Buttons/BaseButtons.vue";
+import UserCard from "@/components/Avatar/UserCard.vue";
 import { Storage } from "@aws-amplify/storage";
 
 import SectionTitleLineWithButton from "@/components/Sections/SectionTitleLineWithButton.vue";
