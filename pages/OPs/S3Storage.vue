@@ -16,7 +16,7 @@ import FormControl from "@/components/Forms/FormControl.vue";
 import FormFilePicker from "@/components/Forms/FormFilePicker.vue";
 import BaseButton from "@/components/Buttons/BaseButton.vue";
 import BaseButtons from "@/components/Buttons/BaseButtons.vue";
-import UserCard from "@/components/Avatar/UserCard.vue";
+import UserCard from "@/components/Avatars/UserCard.vue";
 import { Storage } from "@aws-amplify/storage";
 
 import SectionTitleLineWithButton from "@/components/Sections/SectionTitleLineWithButton.vue";
