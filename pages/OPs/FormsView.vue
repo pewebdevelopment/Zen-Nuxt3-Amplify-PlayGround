@@ -18,7 +18,7 @@ import BaseButtons from "@/components/Buttons/BaseButtons.vue";
 import SectionTitle from "@/components/Sections/SectionTitle.vue";
 
 import SectionTitleLineWithButton from "@/components/Sections/SectionTitleLineWithButton.vue";
-import NotificationBarInCard from "@/components/NotificationBarInCard.vue";
+import NotificationBarInCard from "@/components/NotificationBars/NotificationBarInCard.vue";
 
 const selectOptions = [
   { id: 1, label: "Business development" },
