@@ -3,6 +3,8 @@ export default defineNuxtConfig({
   srcDir: "./",
   css: ["@/assets/css/main.css"],
 
+  experimental: { payloadExtraction: false },
+
   runtimeConfig: {
     process: {
       browser: true,
