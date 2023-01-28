@@ -9,7 +9,7 @@ import {
   mdiCreditCardOutline,
 } from "@mdi/js";
 import SectionMain from "@/components/SectionMain.vue";
-import CardBox from "@/components/CardBox.vue";
+import CardBox from "@/components/Cards/CardBox.vue";
 import BaseDivider from "@/components/BaseDivider.vue";
 import FormField from "@/components/FormField.vue";
 import FormControl from "@/components/FormControl.vue";
