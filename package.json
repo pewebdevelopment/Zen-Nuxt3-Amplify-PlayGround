@@ -33,7 +33,6 @@
     "@jridgewell/sourcemap-codec": "^1.4.14",
     "@mdi/js": "^7.0.96",
     "@nuxtjs/auth-next": "^5.0.0-1637745161.ea53f98",
-
     "@vueup/vue-quill": "^1.0.1",
     "aws-amplify": "^5.0.5",
     "chart.js": "^3.9.1",
@@ -42,8 +41,7 @@
     "paper": "^0.12.17",
     "pinia": "^2.0.28",
     "readable-stream": "^4.2.0",
-
-
+    "rollup": "^2.79.1",
     "uuid4": "^2.0.3",
     "vue": "^3.2.33",
     "vue-3-slider-component": "^0.1.0",
