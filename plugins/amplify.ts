@@ -1,6 +1,6 @@
 import { defineNuxtPlugin } from "#app";
 import { Amplify, Auth } from "aws-amplify";
-import awsExports from "../aws-exports";
+import awsExports from "../aws-exports.js";
 
 // aws-exports should be dynamically generated
 

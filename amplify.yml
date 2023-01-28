@@ -11,7 +11,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        # - eslint --fix
+        - eslint --fix
         - npm ci # ci = clean install, its needed to intall the exact packages on linux
     build:
       commands:
