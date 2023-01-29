@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Whiteboard from "../components/WBfabric/WBfabric";
+import Whiteboard from "@/components/WBfabric/WBfabric";
 export default {
   components: {
     whiteboard: Whiteboard,
