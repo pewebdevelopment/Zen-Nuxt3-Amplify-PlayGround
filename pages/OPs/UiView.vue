@@ -17,7 +17,7 @@ import CardBox from "@/components/Cards/CardBox.vue";
 import BaseButtons from "@/components/Buttons/BaseButtons.vue";
 import BaseButton from "@/components/Buttons/BaseButton.vue";
 import NotificationBar from "@/components/NotificationBars/NotificationBar.vue";
-import BaseDivider from "@/components/Navbar/BaseDivider.vue";
+import BaseDivider from "~~/components/NavBar/BaseDivider.vue";
 import CardBoxModal from "@/components/Cards/CardBoxModal.vue";
 import SectionTitle from "@/components/Sections/SectionTitle.vue";
 import FormField from "@/components/Forms/FormField.vue";
