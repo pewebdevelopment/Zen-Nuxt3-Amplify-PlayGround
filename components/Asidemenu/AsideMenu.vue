@@ -9,7 +9,7 @@ import {
   mdiChevronLeftCircleOutline,
 } from "@mdi/js";
 import BaseIcon from "@/components/Display/BaseIcon.vue";
-import OverlayLayer from "@/components/AsideMenu/OverlayLayer.vue";
+import OverlayLayer from "@/components/Asidemenu/OverlayLayer.vue";
 import PremAsideMenuLayer from "@/components/Asidemenu/AsideMenuLayer.vue";
 import PremAsideMenuItem from "@/components/Asidemenu/AsideMenuItem.vue";
 
