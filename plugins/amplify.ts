@@ -1,15 +1,6 @@
-import { defineNuxtPlugin } from "#app";
-import { Amplify, Auth } from "aws-amplify";
-
-const awsmobile = require("../aws-exports.js").default;
-// aws-exports should be dynamically generated
-
-export default defineNuxtPlugin((nuxtApp) => {
-  Amplify.configure(awsmobile);
-
-  return {
-    provide: {
-      auth: Auth,
-    },
-  };
-});
+//amplify auth plugin 
+ import { defineNuxtPlugin } from "#app";
+ import { Auth } from "aws-amplify";
+ export default defineNuxtPlugin((nuxtApp) => {
+nuxtApp.$auth = Auth;
+ });
