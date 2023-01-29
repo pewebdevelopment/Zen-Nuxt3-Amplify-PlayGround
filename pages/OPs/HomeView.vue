@@ -16,7 +16,7 @@ import SectionMain from "@/components/Sections/SectionMain.vue";
 import CardBoxWidget from "@/components/Cards/CardBoxWidget.vue";
 import CardBox from "@/components/Cards/CardBox.vue";
 import TableSampleClients from "@/components/Tables/TableSampleClients.vue";
-import NotificationBar from "@/components/Notificationbars/NotificationBar.vue";
+import NotificationBar from "~~/components/NotificationBars/NotificationBar.vue";
 import BaseButton from "@/components/Buttons/BaseButton.vue";
 import CardBoxTransaction from "@/components/Cards/CardBoxTransaction.vue";
 import CardBoxClient from "@/components/Cards/CardBoxClient.vue";
