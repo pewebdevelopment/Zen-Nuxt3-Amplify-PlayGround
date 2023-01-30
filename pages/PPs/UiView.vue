@@ -10,7 +10,7 @@ import FormCheckRadioGroup from "@/components/Forms/FormCheckRadioGroup.vue";
 
 import PremFormField from "@/components/Forms/FormField.vue";
 import PremFormControl from "@/components/Forms/FormControl.vue";
-
+//import NuxtLayout from "@/layouts/NuxtLayout.vue"
 import { useSnackBarStore } from "@/stores/snackBar";
 
 const snackBarColor = ref("info");
@@ -30,7 +30,7 @@ const snackBarPush = () => {
 
 <template>
   <div>
-    <NuxtLayout name="zen">
+    <layout name="zen">
       <SectionTitle>SnackBar Toasts</SectionTitle>
 
       <SectionMain>
@@ -86,6 +86,6 @@ const snackBarPush = () => {
           </template>
         </CardBox>
       </SectionMain>
-    </NuxtLayout>
+    </layout>
   </div>
 </template>

@@ -5,7 +5,7 @@ import { useStyleStore } from "@/stores/style.js";
 import { mdiMinus, mdiPlus, mdiChevronRight } from "@mdi/js";
 import { getButtonColor } from "@/configs/colors.js";
 import BaseIcon from "@/components/Display/BaseIcon.vue";
-import PremAsideMenuList from "@/components/AsideMenu/AsideMenuList.vue";
+import PremAsideMenuList from "@/components/Asidemenu/AsideMenuList.vue";
 import PremUpdateMark from "@/components/Display/UpdateMark.vue";
 
 const props = defineProps({

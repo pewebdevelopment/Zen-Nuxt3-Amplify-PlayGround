@@ -12,7 +12,7 @@ import FormCheckRadioGroup from "@/components/Forms/FormCheckRadioGroup.vue";
 import FormFilePicker from "@/components/Forms/FormFilePicker.vue";
 import FormField from "@/components/Forms/FormField.vue";
 import FormControl from "@/components/Forms/FormControl.vue";
-import BaseDivider from "@/components/Navbar/BaseDivider.vue";
+import BaseDivider from "@/components/NavBar/BaseDivider.vue";
 import BaseButton from "@/components/Buttons/BaseButton.vue";
 import BaseButtons from "@/components/Buttons/BaseButtons.vue";
 import SectionTitle from "@/components/Sections/SectionTitle.vue";

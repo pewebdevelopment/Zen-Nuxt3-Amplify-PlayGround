@@ -20,7 +20,7 @@ import FormFilePicker from "@/components/Forms/FormFilePicker.vue";
 import PremFormField from "@/components/Forms/FormField.vue";
 import PremFormControl from "@/components/Forms/FormControl.vue";
 import PremButtonMenu from "@/components/Buttons/ButtonMenu.vue";
-import BaseDivider from "@/components/Navbar/BaseDivider.vue";
+import BaseDivider from "@/components/NavBar/BaseDivider.vue";
 import BaseButton from "@/components/Buttons/BaseButton.vue";
 import SectionTitle from "@/components/Sections/SectionTitle.vue";
 import CardBoxComponentTitle from "@/components/Cards/CardBoxComponentTitle.vue";

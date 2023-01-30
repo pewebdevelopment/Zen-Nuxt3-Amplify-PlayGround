@@ -6,8 +6,8 @@ import { useStyleStore } from "@/stores/style.js";
 import { useMainStore } from "@/stores/main.js";
 import BaseIcon from "@/components/Display/BaseIcon.vue";
 import UserAvatarCurrentUser from "@/components/Avatars/UserAvatarCurrentUser.vue";
-import NavBarMenuList from "@/components/Navbar/NavBarMenuList.vue";
-import BaseDivider from "@/components/Navbar/BaseDivider.vue";
+import NavBarMenuList from "@/components/NavBar/NavBarMenuList.vue";
+import BaseDivider from "~~/components/NavBar/BaseDivider.vue";
 
 const props = defineProps({
   item: {

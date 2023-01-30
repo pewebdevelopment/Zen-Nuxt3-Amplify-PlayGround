@@ -9,9 +9,9 @@ import { useLayoutStore } from "@/stores/layout.js";
 import { useStyleStore } from "@/stores/style.js";
 import BaseIcon from "@/components/Display/BaseIcon.vue";
 import FormControl from "@/components/Forms/FormControl.vue";
-import NavBar from "@/components/Navbar/NavBar.vue";
-import PremAsideMenu from "@/components/AsideMenu/AsideMenu.vue";
-import NavBarItemPlain from "@/components/Navbar/NavBarItemPlain.vue";
+import NavBar from "@/components/NavBar/NavBar.vue";
+import PremAsideMenu from "@/components/Asidemenu/AsideMenu.vue";
+import NavBarItemPlain from "@/components/NavBar/NavBarItemPlain.vue";
 // import FooterBar from "@/components/Footers/FooterBar.vue";
 import { useAuthStore } from "@/stores/authStore";
 

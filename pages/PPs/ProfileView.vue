@@ -23,7 +23,7 @@ import {
 import { faEyeSlash, faSlash } from "@fortawesome/free-solid-svg-icons";
 import SectionMain from "@/components/Sections/SectionMain.vue";
 import CardBox from "@/components/Cards/CardBox.vue";
-import BaseDivider from "@/components/Navbar/BaseDivider.vue";
+import BaseDivider from "@/components/NavBar/BaseDivider.vue";
 import FormField from "@/components/Forms/FormField.vue";
 import FormControl from "@/components/Forms/FormControl.vue";
 import FormFilePicker from "@/components/Forms/FormFilePicker.vue";
