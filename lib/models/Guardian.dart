@@ -25,10 +25,10 @@ import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
 
-/** This is an auto generated class representing the Student type in your schema. */
+/** This is an auto generated class representing the Guardian type in your schema. */
 @immutable
-class Student extends Model {
-  static const classType = const _StudentModelType();
+class Guardian extends Model {
+  static const classType = const _GuardianModelType();
   final String id;
   final String? _firstName;
   final String? _middleName;
@@ -38,7 +38,7 @@ class Student extends Model {
   final TemporalDateTime? _updatedAt;
   final String? _phone;
   final bool? _isArchived;
-  final List<GuardianStudent>? _guardians;
+  final List<GuardianStudent>? _Wardens;
 
   @override
   getInstanceType() => classType;
@@ -47,53 +47,26 @@ class Student extends Model {
   @override
   String getId() => id;
   
-  StudentModelIdentifier get modelIdentifier {
-      return StudentModelIdentifier(
+  GuardianModelIdentifier get modelIdentifier {
+      return GuardianModelIdentifier(
         id: id
       );
   }
   
-  String get firstName {
-    try {
-      return _firstName!;
-    } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
+  String? get firstName {
+    return _firstName;
   }
   
   String? get middleName {
     return _middleName;
   }
   
-  String get lastName {
-    try {
-      return _lastName!;
-    } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
+  String? get lastName {
+    return _lastName;
   }
   
-  String get email {
-    try {
-      return _email!;
-    } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
+  String? get email {
+    return _email;
   }
   
   TemporalDateTime? get createdAt {
@@ -112,14 +85,14 @@ class Student extends Model {
     return _isArchived;
   }
   
-  List<GuardianStudent>? get guardians {
-    return _guardians;
+  List<GuardianStudent>? get Wardens {
+    return _Wardens;
   }
   
-  const Student._internal({required this.id, required firstName, middleName, required lastName, required email, createdAt, updatedAt, phone, isArchived, guardians}): _firstName = firstName, _middleName = middleName, _lastName = lastName, _email = email, _createdAt = createdAt, _updatedAt = updatedAt, _phone = phone, _isArchived = isArchived, _guardians = guardians;
+  const Guardian._internal({required this.id, firstName, middleName, lastName, email, createdAt, updatedAt, phone, isArchived, Wardens}): _firstName = firstName, _middleName = middleName, _lastName = lastName, _email = email, _createdAt = createdAt, _updatedAt = updatedAt, _phone = phone, _isArchived = isArchived, _Wardens = Wardens;
   
-  factory Student({String? id, required String firstName, String? middleName, required String lastName, required String email, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, String? phone, bool? isArchived, List<GuardianStudent>? guardians}) {
-    return Student._internal(
+  factory Guardian({String? id, String? firstName, String? middleName, String? lastName, String? email, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, String? phone, bool? isArchived, List<GuardianStudent>? Wardens}) {
+    return Guardian._internal(
       id: id == null ? UUID.getUUID() : id,
       firstName: firstName,
       middleName: middleName,
@@ -129,7 +102,7 @@ class Student extends Model {
       updatedAt: updatedAt,
       phone: phone,
       isArchived: isArchived,
-      guardians: guardians != null ? List<GuardianStudent>.unmodifiable(guardians) : guardians);
+      Wardens: Wardens != null ? List<GuardianStudent>.unmodifiable(Wardens) : Wardens);
   }
   
   bool equals(Object other) {
@@ -139,7 +112,7 @@ class Student extends Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Student &&
+    return other is Guardian &&
       id == other.id &&
       _firstName == other._firstName &&
       _middleName == other._middleName &&
@@ -149,7 +122,7 @@ class Student extends Model {
       _updatedAt == other._updatedAt &&
       _phone == other._phone &&
       _isArchived == other._isArchived &&
-      DeepCollectionEquality().equals(_guardians, other._guardians);
+      DeepCollectionEquality().equals(_Wardens, other._Wardens);
   }
   
   @override
@@ -159,7 +132,7 @@ class Student extends Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("Student {");
+    buffer.write("Guardian {");
     buffer.write("id=" + "$id" + ", ");
     buffer.write("firstName=" + "$_firstName" + ", ");
     buffer.write("middleName=" + "$_middleName" + ", ");
@@ -174,8 +147,8 @@ class Student extends Model {
     return buffer.toString();
   }
   
-  Student copyWith({String? firstName, String? middleName, String? lastName, String? email, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, String? phone, bool? isArchived, List<GuardianStudent>? guardians}) {
-    return Student(
+  Guardian copyWith({String? firstName, String? middleName, String? lastName, String? email, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, String? phone, bool? isArchived, List<GuardianStudent>? Wardens}) {
+    return Guardian(
       id: id,
       firstName: firstName ?? this.firstName,
       middleName: middleName ?? this.middleName,
@@ -185,10 +158,10 @@ class Student extends Model {
       updatedAt: updatedAt ?? this.updatedAt,
       phone: phone ?? this.phone,
       isArchived: isArchived ?? this.isArchived,
-      guardians: guardians ?? this.guardians);
+      Wardens: Wardens ?? this.Wardens);
   }
   
-  Student.fromJson(Map<String, dynamic> json)  
+  Guardian.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
       _firstName = json['firstName'],
       _middleName = json['middleName'],
@@ -198,22 +171,22 @@ class Student extends Model {
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null,
       _phone = json['phone'],
       _isArchived = json['isArchived'],
-      _guardians = json['guardians'] is List
-        ? (json['guardians'] as List)
+      _Wardens = json['Wardens'] is List
+        ? (json['Wardens'] as List)
           .where((e) => e?['serializedData'] != null)
           .map((e) => GuardianStudent.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'firstName': _firstName, 'middleName': _middleName, 'lastName': _lastName, 'email': _email, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format(), 'phone': _phone, 'isArchived': _isArchived, 'guardians': _guardians?.map((GuardianStudent? e) => e?.toJson()).toList()
+    'id': id, 'firstName': _firstName, 'middleName': _middleName, 'lastName': _lastName, 'email': _email, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format(), 'phone': _phone, 'isArchived': _isArchived, 'Wardens': _Wardens?.map((GuardianStudent? e) => e?.toJson()).toList()
   };
   
   Map<String, Object?> toMap() => {
-    'id': id, 'firstName': _firstName, 'middleName': _middleName, 'lastName': _lastName, 'email': _email, 'createdAt': _createdAt, 'updatedAt': _updatedAt, 'phone': _phone, 'isArchived': _isArchived, 'guardians': _guardians
+    'id': id, 'firstName': _firstName, 'middleName': _middleName, 'lastName': _lastName, 'email': _email, 'createdAt': _createdAt, 'updatedAt': _updatedAt, 'phone': _phone, 'isArchived': _isArchived, 'Wardens': _Wardens
   };
 
-  static final QueryModelIdentifier<StudentModelIdentifier> MODEL_IDENTIFIER = QueryModelIdentifier<StudentModelIdentifier>();
+  static final QueryModelIdentifier<GuardianModelIdentifier> MODEL_IDENTIFIER = QueryModelIdentifier<GuardianModelIdentifier>();
   static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField FIRSTNAME = QueryField(fieldName: "firstName");
   static final QueryField MIDDLENAME = QueryField(fieldName: "middleName");
@@ -223,12 +196,12 @@ class Student extends Model {
   static final QueryField UPDATEDAT = QueryField(fieldName: "updatedAt");
   static final QueryField PHONE = QueryField(fieldName: "phone");
   static final QueryField ISARCHIVED = QueryField(fieldName: "isArchived");
-  static final QueryField GUARDIANS = QueryField(
-    fieldName: "guardians",
+  static final QueryField WARDENS = QueryField(
+    fieldName: "Wardens",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: 'GuardianStudent'));
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "Student";
-    modelSchemaDefinition.pluralName = "Students";
+    modelSchemaDefinition.name = "Guardian";
+    modelSchemaDefinition.pluralName = "Guardians";
     
     modelSchemaDefinition.authRules = [
       AuthRule(
@@ -244,86 +217,86 @@ class Student extends Model {
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Student.FIRSTNAME,
-      isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Student.MIDDLENAME,
+      key: Guardian.FIRSTNAME,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Student.LASTNAME,
-      isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Student.EMAIL,
-      isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Student.CREATEDAT,
+      key: Guardian.MIDDLENAME,
       isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Student.UPDATEDAT,
+      key: Guardian.LASTNAME,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Guardian.EMAIL,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Guardian.CREATEDAT,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Student.PHONE,
+      key: Guardian.UPDATEDAT,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Guardian.PHONE,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Student.ISARCHIVED,
+      key: Guardian.ISARCHIVED,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.bool)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
-      key: Student.GUARDIANS,
+      key: Guardian.WARDENS,
       isRequired: false,
       ofModelName: 'GuardianStudent',
-      associatedKey: GuardianStudent.STUDENT
+      associatedKey: GuardianStudent.GUARDIAN
     ));
   });
 }
 
-class _StudentModelType extends ModelType<Student> {
-  const _StudentModelType();
+class _GuardianModelType extends ModelType<Guardian> {
+  const _GuardianModelType();
   
   @override
-  Student fromJson(Map<String, dynamic> jsonData) {
-    return Student.fromJson(jsonData);
+  Guardian fromJson(Map<String, dynamic> jsonData) {
+    return Guardian.fromJson(jsonData);
   }
   
   @override
   String modelName() {
-    return 'Student';
+    return 'Guardian';
   }
 }
 
 /**
  * This is an auto generated class representing the model identifier
- * of [Student] in your schema.
+ * of [Guardian] in your schema.
  */
 @immutable
-class StudentModelIdentifier implements ModelIdentifier<Student> {
+class GuardianModelIdentifier implements ModelIdentifier<Guardian> {
   final String id;
 
-  /** Create an instance of StudentModelIdentifier using [id] the primary key. */
-  const StudentModelIdentifier({
+  /** Create an instance of GuardianModelIdentifier using [id] the primary key. */
+  const GuardianModelIdentifier({
     required this.id});
   
   @override
@@ -341,7 +314,7 @@ class StudentModelIdentifier implements ModelIdentifier<Student> {
   String serializeAsString() => serializeAsMap().values.join('#');
   
   @override
-  String toString() => 'StudentModelIdentifier(id: $id)';
+  String toString() => 'GuardianModelIdentifier(id: $id)';
   
   @override
   bool operator ==(Object other) {
@@ -349,7 +322,7 @@ class StudentModelIdentifier implements ModelIdentifier<Student> {
       return true;
     }
     
-    return other is StudentModelIdentifier &&
+    return other is GuardianModelIdentifier &&
       id == other.id;
   }
   
