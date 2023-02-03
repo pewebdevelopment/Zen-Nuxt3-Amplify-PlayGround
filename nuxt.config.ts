@@ -57,5 +57,7 @@ export default defineNuxtConfig({
   build: {},
 
   // target: "static"
+  
 });
+
 
