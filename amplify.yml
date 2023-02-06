@@ -11,6 +11,7 @@ frontend:
   phases:
     preBuild:
       commands: 
+        - export NODE_OPTIONS="--max-old-space-size=8192" # Increase to 8 GB
         - git clone https://github.com/cometchat-pro/cometchat-pro-vue-ui-kit.git
         - npm install
         - npm ci # ci = clean install, its needed to intall the exact packages on linux
