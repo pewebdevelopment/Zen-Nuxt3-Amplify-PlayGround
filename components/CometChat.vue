@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import  CometChatUI  from '../cometchat-pro-vue-ui-kit/CometChatWorkspace/src/components/CometChatUI/CometChatUI.vue';
+import { CometChatUI } from '../cometchat-pro-vue-ui-kit/CometChatWorkspace/src/components/CometChatUI'; 
 import { CometChat } from '@cometchat-pro/chat';
 const user = ref()
 const init = ref(false)
