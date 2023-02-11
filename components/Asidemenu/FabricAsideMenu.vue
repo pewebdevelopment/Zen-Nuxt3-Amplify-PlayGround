@@ -9,9 +9,13 @@ import {
   mdiChevronLeftCircleOutline,
 } from "@mdi/js";
 import BaseIcon from "@/components/Display/BaseIcon.vue";
-import OverlayLayer from "@/components/WBFabric/AsideMenu/OverlayLayer.vue";
-import PremAsideMenuLayer from "@/components/WBFabric/Asidemenu/AsideMenuLayer.vue";
-import PremAsideMenuItem from "@/components/WBFabric/Asidemenu/AsideMenuItem.vue";
+import OverlayLayer from "./OverlayLayer.vue";
+import PremAsideMenuItem from "./AsideMenuItem.vue";
+import PremAsideMenuLayer from "./AsideMenuLayer.vue";
+
+// import OverlayLayer from "@/components/Asidemenu/AsideMenu/OverlayLayer.vue";
+// import PremAsideMenuLayer from "@/components/Asidemenu/Asidemenu/AsideMenuLayer.vue";
+// import PremAsideMenuItem from "@/components/Asidemenu/Asidemenu/AsideMenuItem.vue";
 
 defineProps({
   menu: {
@@ -110,7 +114,7 @@ const expandCollapseItem = computed(() => ({
     @menu-click="menuClickPrimaryMenu"
   >
     <div class="flex-1 px-3 flex justify-center">
-      <b class="font-black">PE One</b>
+      <b class="font-black">Whiteboard</b>
     </div>
 
     <template #footer>
