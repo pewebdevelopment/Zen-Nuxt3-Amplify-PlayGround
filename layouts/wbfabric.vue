@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { mdiForwardburger, mdiBackburger, mdiMenu } from "@mdi/js";
 import { useRouter } from "vue-router";
-import menuAside from "@/configs/menuAsideFabric";
+import menuAsideFabric from "@/configs/menuAsideFabric";
 import menuNavBar from "@/configs/menuNavBar.js";
 import { useMainStore } from "@/stores/main.js";
 import { useLayoutStore } from "@/stores/layout.js";
@@ -10,11 +10,11 @@ import { useStyleStore } from "@/stores/style.js";
 import BaseIcon from "@/components/Display/BaseIcon.vue";
 import FormControl from "@/components/Forms/FormControl.vue";
 import NavBar from "@/components/NavBar/NavBar.vue";
-import PremAsideMenu from "@/components/Asidemenu/AsideMenu.vue";
+import FabricAsideMenu from "@/components/Asidemenu/FabricAsideMenu.vue";
 import NavBarItemPlain from "@/components/NavBar/NavBarItemPlain.vue";
-import FooterBar from "@/components/Footers/FooterBar.vue";
 import { useAuthStore } from "@/stores/authStore";
 import { useWBFabric } from "@/stores/wbFabric";
+import Modal from "../components/WBFabric/utils/Modal.vue";
 
 useMainStore().setUser({
   name: "Zenith Physics",
@@ -28,30 +28,30 @@ const layoutAsidePadding = computed(() =>
 );
 
 const styleStore = useStyleStore();
-
 const layoutStore = useLayoutStore();
-
 const fabricStore = useWBFabric();
-
 const router = useRouter();
-
 const AuthStore = useAuthStore();
-
-// const GraphqlAPIStore = useGraphqlAPIStore();
 
 router.beforeEach(() => {
   layoutStore.isAsideMobileExpanded = false;
 });
 
-const menuClick = (event, item) => {
-  console.log("Event:", event);
-  console.log("Item:", item);
+useHead({
+  title: "WB-import-pdf",
+  script: [
+    {
+      src: "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.3.122/build/pdf.min.js",
+      defer: true,
+      type: "module",
+      crossorigin: "anonymous",
+    },
+  ],
+});
 
-  if (item.label.toLowerCase() === "home") {
-    console.log("Item.label:", item.label);
-    console.log(fabricStore.currentRectCount);
-    fabricStore.incrCurrentRectCount();
-  }
+const menuClick = (event, item) => {
+  // console.log("Event:", event);
+  // console.log("Item:", item);
 
   if (item.isToggleLightDark) {
     styleStore.setDarkMode();
@@ -61,6 +61,34 @@ const menuClick = (event, item) => {
     AuthStore.logout();
     // console.log("Clicked On Logout");
     router.push("/auth/login");
+  }
+
+  switch (item.id) {
+    case 1:
+      console.log("id", 1);
+      break;
+    case 2:
+      // console.log("id", 2);
+      fabricStore.toggleModal();
+      break;
+
+    case 3:
+      console.log("id", 3);
+      break;
+
+    case 4:
+      console.log("id", 4);
+      break;
+
+    case 5:
+      console.log("id", 5);
+      break;
+
+    case 6:
+      console.log("id", 6);
+      break;
+
+    default:
   }
 };
 </script>
@@ -122,13 +150,35 @@ const menuClick = (event, item) => {
           </NavBarItemPlain>
         </NavBar>
         <!-- The  Premium Aside Menu -->
-        <PremAsideMenu :menu="menuAside" @menu-click="menuClick" />
+        <FabricAsideMenu :menu="menuAsideFabric" @menu-click="menuClick" />
+        <Teleport to="body">
+          <!-- use the modal component, pass in the prop -->
+          <modal :show="fabricStore.showModal">
+            <template #header>
+              <h3>Import PDF</h3>
+            </template>
+            <template #body>
+              <div>
+                <input id="input-pdf" type="file" accept="application/pdf" />
+              </div>
+              <br />
+              <button
+                class="modal-default-button"
+                @click="fabricStore.toggleModal"
+              >
+                Cancel
+              </button>
+            </template>
+          </modal>
+        </Teleport>
         <slot />
-        <!-- FooterBar-->
-        <FooterBar>
-          <a href="#" target="_blank" class="text-blue-600"> Photon Ecademy</a>
-        </FooterBar>
       </div>
     </div>
   </div>
 </template>
+
+<style>
+.modal-default-button {
+  margin: auto;
+}
+</style>
