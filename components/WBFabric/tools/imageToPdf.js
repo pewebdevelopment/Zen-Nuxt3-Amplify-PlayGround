@@ -3,6 +3,7 @@ import { useWBFabric } from "~~/stores/wbFabric";
 const fabricStore = useWBFabric();
 
 const Base64Prefix = "data:application/pdf;base64,";
+
 function getPdfHandler() {
     return window['pdfjs-dist/build/pdf'];
 }
@@ -18,9 +19,12 @@ function readBlob(blob) {
 
 async function printPDF(pdfData, pages) {
     const pdfjsLib = await getPdfHandler();
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '//cdn.jsdelivr.net/npm/pdfjs-dist@3.3.122/build/pdf.worker.min.js';
+
     pdfData = pdfData instanceof Blob ? await readBlob(pdfData) : pdfData;
     const data = atob(pdfData.startsWith(Base64Prefix) ? pdfData.substring(Base64Prefix.length) : pdfData);
     // const data = Buffer.from(pdfData.startsWith(Base64Prefix) ? pdfData.substring(Base64Prefix.length) : pdfData, 'base64')
+
     // Using DocumentInitParameters object to load binary data.
     const loadingTask = pdfjsLib.getDocument({ data });
     return loadingTask.promise
@@ -65,27 +69,15 @@ async function pdfToImage(pdfData, canvas) {
 }
 
 export function handleSubmit() {
-    // console.log('inside handleSubmit', fabricStore.canvas);
-    // if (canvas) {
-    //     canvas.requestRenderAll();
-    //     await Promise.all(pdfToImage(e.target.files[0], canvas));
-    // }
-
-    // ****************************************************************
-
-    // const data = document.querySelector(`#${id}`).value;
-    // console.log(data.files[0]);
-    // canvas.requestRenderAll();
-    // await Promise.all(pdfToImage(data.files[0], canvas));
-
     const d = document.getElementById('input-pdf');
-    console.log(d);
     d.addEventListener('change', async (e) => {
         const canvas = fabricStore.canvas
-        console.log('inside handleSubmit', canvas);
         canvas.requestRenderAll();
-        console.log(e.target.files);
-        // await Promise.all(pdfToImage(e.target.files[0], canvas));
+        try {
+            await Promise.all(pdfToImage(e.target.files[0], canvas));
+        } catch (err) {
+            // console.log('Some error occured: ', err);
+        }
         fabricStore.toggleModal();
     });
 };

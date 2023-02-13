@@ -15,7 +15,6 @@ import NavBarItemPlain from "@/components/NavBar/NavBarItemPlain.vue";
 import { useAuthStore } from "@/stores/authStore";
 import { useWBFabric } from "@/stores/wbFabric";
 import Modal from "../components/WBFabric/utils/Modal.vue";
-import { handleSubmit } from "../components/WBFabric/tools/imageToPdf";
 
 useMainStore().setUser({
   name: "Zenith Physics",
@@ -38,9 +37,21 @@ router.beforeEach(() => {
   layoutStore.isAsideMobileExpanded = false;
 });
 
+useHead({
+  title: "WB-import-pdf",
+  script: [
+    {
+      src: "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.3.122/build/pdf.min.js",
+      defer: true,
+      type: "module",
+      crossorigin: "anonymous",
+    },
+  ],
+});
+
 const menuClick = (event, item) => {
-  console.log("Event:", event);
-  console.log("Item:", item);
+  // console.log("Event:", event);
+  // console.log("Item:", item);
 
   if (item.isToggleLightDark) {
     styleStore.setDarkMode();

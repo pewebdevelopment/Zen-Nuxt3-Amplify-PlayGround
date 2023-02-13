@@ -12,10 +12,9 @@ import BaseIcon from "@/components/Display/BaseIcon.vue";
 import OverlayLayer from "./OverlayLayer.vue";
 import PremAsideMenuItem from "./AsideMenuItem.vue";
 import PremAsideMenuLayer from "./AsideMenuLayer.vue";
+import { useWBFabric } from "@/stores/wbFabric";
 
-// import OverlayLayer from "@/components/Asidemenu/AsideMenu/OverlayLayer.vue";
-// import PremAsideMenuLayer from "@/components/Asidemenu/Asidemenu/AsideMenuLayer.vue";
-// import PremAsideMenuItem from "@/components/Asidemenu/Asidemenu/AsideMenuItem.vue";
+const fabricStore = useWBFabric();
 
 defineProps({
   menu: {
@@ -77,11 +76,9 @@ const overlayClick = () => {
 };
 
 window.addEventListener("keydown", (e) => {
-  if (
-    e.key === "Escape" &&
-    (secondaryMenuItem.value || !isPrimaryMenuCompact.value)
-  ) {
-    overlayClick();
+  if (e.key === "Escape") {
+    if (secondaryMenuItem.value || !isPrimaryMenuCompact.value) overlayClick();
+    if (fabricStore.showModal) fabricStore.toggleModal();
   }
 });
 
@@ -114,7 +111,7 @@ const expandCollapseItem = computed(() => ({
     @menu-click="menuClickPrimaryMenu"
   >
     <div class="flex-1 px-3 flex justify-center">
-      <b class="font-black">Whiteboard</b>
+      <b class="font-black">WB</b>
     </div>
 
     <template #footer>
