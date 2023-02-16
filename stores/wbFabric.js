@@ -4,6 +4,7 @@ const state = () => ({
   currentRectCount: 0,
   canvas: null,
   showModal: false,
+  drawingMode: false
 });
 
 const actions = {
@@ -12,6 +13,9 @@ const actions = {
   },
   toggleModal() {
     this.showModal = !this.showModal
+  },
+  toggleDrawingMode() {
+    this.drawingMode = !this.drawingMode
   }
 };
 

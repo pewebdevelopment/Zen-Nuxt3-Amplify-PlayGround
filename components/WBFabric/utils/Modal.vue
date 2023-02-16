@@ -1,5 +1,5 @@
 <script setup>
-import { handleSubmit } from "../tools/imageToPdf";
+import { handleSubmit } from "../tools/importPdf";
 
 const props = defineProps({
   show: Boolean,

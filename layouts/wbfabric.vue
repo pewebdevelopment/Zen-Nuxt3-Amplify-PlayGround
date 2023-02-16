@@ -38,7 +38,7 @@ router.beforeEach(() => {
 });
 
 useHead({
-  title: "WB-import-pdf",
+  title: "Whiteboard",
   script: [
     {
       src: "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.3.122/build/pdf.min.js",
@@ -65,15 +65,17 @@ const menuClick = (event, item) => {
 
   switch (item.id) {
     case 1:
-      console.log("id", 1);
+      // console.log("id", 1);
+      fabricStore.toggleDrawingMode();
       break;
+
     case 2:
-      // console.log("id", 2);
-      fabricStore.toggleModal();
+      console.log("id", 2);
       break;
 
     case 3:
-      console.log("id", 3);
+      // console.log("id", 3);
+      fabricStore.toggleModal();
       break;
 
     case 4:

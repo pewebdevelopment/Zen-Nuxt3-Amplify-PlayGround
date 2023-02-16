@@ -64,6 +64,7 @@ async function pdfToImage(pdfData, canvas) {
             canvas.add(new fabric.Image(await c, {
                 scaleX: scale,
                 scaleY: scale,
+                erasable: false
             }));
         });
 }
