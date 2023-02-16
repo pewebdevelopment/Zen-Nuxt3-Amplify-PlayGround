@@ -1,12 +1,9 @@
 import {
   mdiAccountCircle,
-  mdiMonitor,
   mdiHelpCircle,
   mdiLock,
   mdiSquareEditOutline,
-  mdiTable,
   mdiMenuOpen,
-  mdiTelevisionGuide,
   mdiBarcode,
   mdiPalette,
   mdiCardAccountDetailsOutline,
@@ -17,36 +14,35 @@ import {
   mdiMessage,
   mdiFastForwardOutline,
   mdiBook,
+  mdiDraw,
+  mdiFilePdfBox,
 } from "@mdi/js";
 
 export default [
   {
     to: "",
-    label: "ChallengePost Gallery",
-    icon: mdiMonitor,
+    label: "Draw",
+    icon: mdiDraw,
     id: 1
   },
   {
     to: "",
-    label: "Import PDF",
-    icon: mdiTelevisionGuide,
+    label: "Random",
+    icon: mdiBook,
     id: 2
   },
   {
     to: "",
-    label: "Eraser",
-    icon: mdiTable,
-    // updateMark: "warning",
+    label: "Import PDF",
+    icon: mdiFilePdfBox,
     id: 3
   },
-
   {
     to: "",
     label: "Custom Filter Swap Colors",
     icon: mdiBallot,
     id: 4
   },
-
   {
     to: "",
     label: "Composed Filter for duotone",
