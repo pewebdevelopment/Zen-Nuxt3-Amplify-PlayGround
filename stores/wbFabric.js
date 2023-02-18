@@ -4,7 +4,18 @@ const state = () => ({
   currentRectCount: 0,
   canvas: null,
   showModal: false,
-  drawingMode: false
+  drawingMode: false,
+  toolSettings: false,
+  selectedTool: 'pencil',
+  pencil: {
+    width: 5
+  },
+  eraser: {
+    width: 50
+  },
+  highlighter: {
+    width: 25
+  }
 });
 
 const actions = {
