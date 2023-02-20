@@ -1,24 +1,40 @@
 <template>
-  <div>
-    <div id="toolbar">
+  <div id="toolbar">
+    <div id="tools">
       <div id="toolbarheader">
         <SvgIcon type="mdi" :path="mdiDotsHorizontal" />
       </div>
       <div id="btn-group" class="vertical">
-        <button class="btn" @click="selectPencil">
-          <SvgIcon type="mdi" :path="mdiPencil" />
-        </button>
-        <button class="btn" @click="selectEraser">
-          <SvgIcon type="mdi" :path="mdiEraser" />
-        </button>
-        <button class="btn" @click="selectHighlighter">
-          <SvgIcon type="mdi" :path="mdiMarker" />
-        </button>
+        <div class="btn-container">
+          <button class="btn" @click="selectPencil">
+            <SvgIcon type="mdi" :path="mdiPencil" />
+          </button>
+        </div>
+
+        <div class="btn-container">
+          <button class="btn" @click="selectEraser">
+            <SvgIcon type="mdi" :path="mdiEraser" />
+          </button>
+        </div>
+
+        <div class="btn-container">
+          <button class="btn" @click="selectHighlighter">
+            <SvgIcon type="mdi" :path="mdiMarker" />
+          </button>
+        </div>
+
+        <div class="btn-container">
+          <button class="btn" @click="selectChangeBackground">
+            <SvgIcon type="mdi" :path="mdiFormatColorFill" />
+          </button>
+        </div>
+
         <button class="btn active" @click="selectCursor">
           <SvgIcon type="mdi" :path="mdiCursorDefaultOutline" />
         </button>
       </div>
     </div>
+    <SettingsToolbar v-if="fabricStore.toolSettings"></SettingsToolbar>
   </div>
 </template>
 
@@ -30,13 +46,18 @@ import {
   mdiMarker,
   mdiDotsHorizontal,
   mdiCursorDefaultOutline,
+  mdiFormatColorFill,
 } from "@mdi/js";
 import {
   selectPencil,
   selectCursor,
   selectEraser,
   selectHighlighter,
+  selectChangeBackground,
 } from "./toolSettings";
+import { useWBFabric } from "@/stores/wbFabric";
+import SettingsToolbar from "./SettingsToolbar.vue";
+const fabricStore = useWBFabric();
 
 onMounted(() => {
   // Make the DIV element draggable:
@@ -122,11 +143,15 @@ onMounted(() => {
 #toolbar {
   position: absolute;
   z-index: 9;
+  left: 20px;
+  top: 10px;
+}
+
+#tools {
+  position: absolute;
   background-color: #d6d6d6e3;
   border-radius: 15px;
   text-align: center;
-  left: 20px;
-  top: 10px;
 }
 
 #toolbarheader {
@@ -142,7 +167,6 @@ onMounted(() => {
 
 .vertical button {
   color: rgba(0, 0, 0, 0.8);
-  display: block;
   border-radius: 50px;
   margin: 6px 4px;
   padding: 10px;
@@ -155,5 +179,10 @@ onMounted(() => {
 
 .active {
   background-color: rgba(35, 35, 35, 0.4);
+}
+
+.btn-container {
+  position: relative;
+  width: auto;
 }
 </style>
