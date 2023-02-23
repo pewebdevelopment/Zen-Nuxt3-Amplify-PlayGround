@@ -1,4 +1,5 @@
 import { useWBFabric } from "@/stores/wbFabric";
+import history from "@/components/WBFabric/tools/history";
 const fabricStore = useWBFabric();
 
 function _setCanvasProperties(canvas) {
@@ -17,13 +18,36 @@ function _setCanvasProperties(canvas) {
 }
 
 function _addRectangle(canvas) {
-    const rect = new fabric.Rect({
+    
+    var modifiedHandler = function (evt) {
+        var modifiedObject = evt.target;
+        // console.log('object moved',modifiedObject,modifiedObject.get('left'), modifiedObject.get('top'),history);
+        const newrect = 
+        {
+            
+            fill: modifiedObject.get('fill'),
+            width: modifiedObject.get('width'),
+            height: modifiedObject.get('height'),
+            left: modifiedObject.get('left'),
+            top:modifiedObject.get('top'),
+            scaleX:modifiedObject.get('scaleX'),
+            scaleY:modifiedObject.get('scaleY'),
+            
+        };
+        
+        history.add(newrect,canvas);
+        
+    };
+    
+    canvas.on('object:modified', modifiedHandler);
+    history.add({
         fill: "red",
         width: 200,
         height: 200,
-    });
-    canvas.add(rect);
-    canvas.setActiveObject(rect);
+        left: 300,
+        right:300
+    },canvas);
+    
 }
 
 const customControls = {
@@ -42,14 +66,13 @@ const customControls = {
             render: renderIcon,
             cornerSize: 24
         });
-
         function deleteObject(eventData, transform) {
             const target = transform.target;
             const canvas = target.canvas;
             canvas.remove(target);
             canvas.requestRenderAll();
         }
-
+        
         function renderIcon(ctx, left, top, styleOverride, fabricObject) {
             const size = this.cornerSize;
             ctx.save();
@@ -57,6 +80,7 @@ const customControls = {
             ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
             ctx.drawImage(img, -size / 2, -size / 2, size, size);
             ctx.restore();
+            
         }
     }
 }
@@ -80,6 +104,7 @@ function _workaround(canvas) {
 }
 
 export default function (canvas) {
+    
     _setCanvasProperties(canvas);
 
     // Adding a simple rectangle to canvas
