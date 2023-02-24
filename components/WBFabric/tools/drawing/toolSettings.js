@@ -26,6 +26,7 @@ export function changeBrushWidth(type, val) {
 export function changeBackgroundColor(val) {
     canvas = fabricStore.canvas
 
+    fabricStore.background = val;
     canvas.backgroundColor = val;
     canvas.renderAll();
 }
