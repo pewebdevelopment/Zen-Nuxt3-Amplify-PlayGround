@@ -7,6 +7,7 @@ const state = () => ({
   drawingMode: false,
   toolSettings: false,
   selectedTool: 'pencil',
+  background: '#ffffff',
   pencil: {
     width: 5
   },

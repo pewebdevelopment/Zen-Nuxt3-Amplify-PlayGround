@@ -69,7 +69,7 @@
     </div>
     <div v-show="checkSelectedTool() == 'changeBG'" class="bgColor">
       <label for="bg-color">Current Color :</label>
-      <input type="color" value="#ffffff" id="bg-color" />
+      <input type="color" :value="fabricStore.background" id="bg-color" />
     </div>
   </div>
 </template>
