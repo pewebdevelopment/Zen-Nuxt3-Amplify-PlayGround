@@ -28,7 +28,7 @@ const isMenuNavBarActive = ref(false);
   >
     <div class="flex lg:items-stretch" :class="containerMaxW">
       <div class="flex flex-1 items-stretch h-14">
-        <slot />
+        <slot/>
       </div>
 
       <!-- The three dots that appear on a small screen to toggle the TopMenuNavBar -->

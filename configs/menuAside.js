@@ -30,9 +30,17 @@ export default [
     label: "UI Base",
     icon: mdiTelevisionGuide,
   },
+
   {
     to: "/pps/tablesListsView",
     label: "Tables & Lists",
+    icon: mdiTable,
+    updateMark: "warning",
+  },
+
+  {
+    to: "/testimonial",
+    label: "Test",
     icon: mdiTable,
     updateMark: "warning",
   },
