@@ -20,6 +20,7 @@ import CardBoxClient from "@/components/Cards/CardBoxClient.vue";
 import CardBoxTransaction from "@/components/Cards/CardBoxTransaction.vue";
 import NotificationBar from "@/components/NotificationBars/NotificationBar.vue";
 import TableCardClients from "@/components/Tables/TableCardClients.vue";
+import Test from "@/components/Testimonials/testimonials.vue"
 
 const chartData = ref(null);
 
@@ -94,6 +95,9 @@ const transactionBarItems = computed(() => mainStore.history);
               :type="transaction.type"
               :name="transaction.name"
             />
+
+            
+
           </div>
           <div class="flex flex-col justify-between">
             <CardBoxClient
@@ -106,7 +110,7 @@ const transactionBarItems = computed(() => mainStore.history);
             />
           </div>
         </div>
-
+        <Test/>
         <SectionBannerStarOnGitHub class="mt-6 mb-6" />
 
         <SectionTitleLineWithButton :icon="mdiChartPie" title="Trends overview">
@@ -122,7 +126,7 @@ const transactionBarItems = computed(() => mainStore.history);
             <line-chart :data="chartData" class="h-96" />
           </div>
         </CardBox>
-
+        
         <SectionTitleLineWithButton
           :icon="mdiAccountMultiple"
           title="Clients"
