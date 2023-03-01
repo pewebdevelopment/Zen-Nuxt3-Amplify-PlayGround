@@ -67,7 +67,7 @@ function _addPolygon(canvas) {
         transparentCorners: false,
         cornerColor: 'blue',
     });
-    canvas.viewportTransform = [0.7, 0, 0, 0.7, -50, 50];
+    // canvas.viewportTransform = [0.7, 0, 0, 0.7, -50, 50];
     canvas.add(polygon);
 }
 
