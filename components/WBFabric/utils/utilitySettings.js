@@ -1,15 +1,14 @@
+import { fabric } from "fabric";
+
 export function discardSelection(canvas) {
     canvas.discardActiveObject();
     canvas.requestRenderAll();
 }
 
 export function multipleSelect(canvas) {
-    canvas.discardActiveObject();
-    let sel = new fabric.ActiveSelection(canvas.getObjects(), {
-        canvas: canvas,
-    });
-    canvas.setActiveObject(sel);
-    canvas.requestRenderAll();
+    var selection = new fabric.ActiveSelection( canvas.getObjects(), {canvas: canvas } );
+    canvas.setActiveObject(selection);
+    canvas.renderAll();    
 }
 
 export function group(canvas) {
