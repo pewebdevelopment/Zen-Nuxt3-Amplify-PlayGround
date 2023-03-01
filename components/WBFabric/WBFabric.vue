@@ -3,7 +3,7 @@
     <DragToolbar v-if="fabricStore.drawingMode" />
     <canvas id="canvas-fabric" ref="fabricJS"></canvas>
     <div id="panels-container" class="flex flex-col gap-5">
-      <CopyPasetPanel :canvas="canvasObj" />
+      <EditTools :canvas="canvasObj" />
     </div>
   </div>
 </template>
@@ -13,11 +13,11 @@ import { fabric } from "fabric";
 import applySettings from "./utils/customSettings";
 import DragToolbar from "./tools/drawing/DragToolbar.vue";
 import { useWBFabric } from "@/stores/wbFabric";
-import CopyPasetPanel from "./panel/CopyPaste.vue";
+import EditTools from "./panel/EditTools.vue";
 
 const fabricJS = ref(null);
-const fabricStore = useWBFabric();  
-let canvasObj = ref({})
+const fabricStore = useWBFabric();
+let canvasObj = ref({});
 let canvas;
 
 onMounted(() => {
