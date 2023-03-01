@@ -9,9 +9,8 @@ import {
   mdiChevronLeftCircleOutline,
 } from "@mdi/js";
 import BaseIcon from "@/components/Display/BaseIcon.vue";
-import OverlayLayer from "./OverlayLayer.vue";
 import PremAsideMenuItem from "./AsideMenuItem.vue";
-import PremAsideMenuLayer from "./AsideMenuLayer.vue";
+import PremAsideMenuLayer from "./FabricAsideMenuLayer.vue";
 import { useWBFabric } from "@/stores/wbFabric";
 
 const fabricStore = useWBFabric();
@@ -102,7 +101,7 @@ const expandCollapseItem = computed(() => ({
     :menu="menu"
     :class="[
       layoutStore.isAsideMobileExpanded ? 'left-0' : '-left-60 lg:left-0',
-      isPrimaryMenuCompact ? 'lg:w-[5.5rem]' : 'lg-w-64',
+      isPrimaryMenuCompact ? 'lg:w-[5rem]' : 'lg-w-64',
       { 'lg:hidden xl:flex': !layoutStore.isAsideLgActive },
     ]"
     :is-compact="isPrimaryMenuCompact"
@@ -130,7 +129,7 @@ const expandCollapseItem = computed(() => ({
   <PremAsideMenuLayer
     v-if="secondaryMenuItem"
     :menu="secondaryMenuItem.menuSecondary"
-    :class="[isPrimaryMenuCompact ? 'lg:left-[5.5rem]' : 'md:left-60']"
+    :class="[isPrimaryMenuCompact ? 'lg:left-[5rem]' : 'md:left-60']"
     class="right-0 md:right-auto animate-fade-in-right-fast lg:animate-fade-in-left-fast"
     @menu-click="menuClickSecondaryMenu"
   >
@@ -150,9 +149,9 @@ const expandCollapseItem = computed(() => ({
     />
   </PremAsideMenuLayer>
 
-  <OverlayLayer
+  <!-- <OverlayLayer
     :type="overlayLayerDisplayType"
     z-index="z-40"
     @overlay-click="overlayClick"
-  />
+  /> -->
 </template>

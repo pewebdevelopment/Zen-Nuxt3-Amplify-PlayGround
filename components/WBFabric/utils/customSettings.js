@@ -11,7 +11,7 @@ function _setCanvasProperties(canvas) {
     fabric.Object.prototype.cornerColor = "#37403a";
     fabric.Object.prototype.cornerStyle = "circle";
 
-    const par = document.getElementById("main");
+    const par = document.getElementById("pagetop-container");
     canvas.setDimensions({ width: par.offsetWidth, height: par.offsetHeight });
     fabricStore.canvas = canvas;
 }
