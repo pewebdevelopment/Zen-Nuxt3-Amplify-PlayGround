@@ -3,7 +3,7 @@
     <DragToolbar v-if="fabricStore.drawingMode" />
     <canvas id="canvas-fabric" ref="fabricJS"></canvas>
     <div id="panels-container" class="flex flex-col gap-5">
-      <EditTools :canvas="canvasObj" />
+      <EditTools :canvas="canvas" />
     </div>
   </div>
 </template>
@@ -17,14 +17,13 @@ import EditTools from "./panel/EditTools.vue";
 
 const fabricJS = ref(null);
 const fabricStore = useWBFabric();
-let canvasObj = ref({});
-let canvas;
+
+let canvas = ref({})
 
 onMounted(() => {
-  canvas = new fabric.Canvas(fabricJS.value.id);
-  canvasObj.value = canvas
+  canvas.value = new fabric.Canvas(fabricJS.value.id);
   // To apply custom settings on canvas
-  applySettings(canvas);
+  applySettings(canvas.value);
 });
 </script>
 

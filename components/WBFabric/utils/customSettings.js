@@ -145,7 +145,7 @@ export default function (canvas) {
     _addCircle(canvas);
     // Object controls not working until common selection
     // Issue found when importing pdfs
-    // _workaround(canvas);
+    _workaround(canvas);
 
     // Adding custom controls
     customControls._deleteControl()
