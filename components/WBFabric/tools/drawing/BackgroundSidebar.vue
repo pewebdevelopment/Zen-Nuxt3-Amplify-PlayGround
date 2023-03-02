@@ -1,17 +1,32 @@
 <template>
   <div id="sidebar-bg-settings" class="sidebar">
-    background settings
-
     <a
       href="javascript:void(0)"
       class="closebtn"
       @click="closeBackgroundSettings"
       >&times;</a
     >
+    <div>
+      <label for="bg-color">Current Color :</label>
+      <input type="color" :value="fabricStore.background" id="bg-color" />
+    </div>
   </div>
 </template>
 
 <script setup>
+import { useWBFabric } from "@/stores/wbFabric";
+import { changeBackgroundColor } from "@/components/WBFabric/tools/drawing/toolSettings";
+
+const fabricStore = useWBFabric();
+
+onMounted(() => {
+  const bgColor = document.getElementById("bg-color");
+
+  bgColor.oninput = function () {
+    changeBackgroundColor(this.value);
+  };
+});
+
 function closeBackgroundSettings() {
   document.getElementById("sidebar-bg-settings").style.width = "0";
   document.getElementById("pagetop-container").style.marginLeft = "0";
