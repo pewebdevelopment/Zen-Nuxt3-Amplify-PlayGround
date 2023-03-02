@@ -1,12 +1,18 @@
 <template>
   <div class="historyPanel">
-    <button @click="Copy(canvas)">Copy Selected Element</button>
-    <button @click="Paste(canvas)">Paste Selected Object</button>
-    <button @click="multipleSelect(canvas)">Select Multiple Object</button>
-    <button @click="group(canvas)">Group Object</button>
-    <button @click="unGroup(canvas)">Ungroup Object</button>
-    <button @click="discardSelection(canvas)">Discard Selection</button>
-    <button @click="Edit(canvas)">Edit Polygon</button>
+    <label for="utils">Object Controls</label>
+
+    <select name="Object Controls" id="utils">
+      <option @click="Copy(canvas)">Copy Selected Element</option>
+      <option @click="Paste(canvas)">Paste Selected Object</option>
+      <option @click="multipleSelect(canvas)">Select Multiple Object</option>
+      <option @click="group(canvas)">Group Object</option>
+      <option @click="unGroup(canvas)">Ungroup Object</option>
+      <option @click="discardSelection(canvas)">Discard Selection</option>
+      <option @click="Edit(canvas)">Edit Polygon</option>
+    </select>
+
+   
   </div>
   <br />
 </template>
