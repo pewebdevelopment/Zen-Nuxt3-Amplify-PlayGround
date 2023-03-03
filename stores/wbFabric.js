@@ -28,10 +28,16 @@ const actions = {
   },
   toggleDrawingMode() {
     this.drawingMode = !this.drawingMode
+  },
+  setCanvas(canvas){
+    this.canvas = canvas
   }
 };
 
 const getters = {
+  getCanvas(){
+    return this.canvas;
+  }
 };
 
 export const useWBFabric = defineStore("WBFabric", {
