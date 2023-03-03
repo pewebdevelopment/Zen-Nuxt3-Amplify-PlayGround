@@ -1,17 +1,21 @@
 import { fabric } from "fabric";
-
-export function discardSelection(canvas) {
+import { useWBFabric } from "~~/stores/wbFabric";
+let fabricStore = useWBFabric();
+export function discardSelection() {
+    const canvas = fabricStore.canvas;
     canvas.discardActiveObject();
     canvas.requestRenderAll();
 }
 
-export function multipleSelect(canvas) {
-    var selection = new fabric.ActiveSelection( canvas.getObjects(), {canvas: canvas } );
+export function multipleSelect() {
+    const canvas = fabricStore.canvas;
+    var selection = new fabric.ActiveSelection(canvas.getObjects(), { canvas: canvas });
     canvas.setActiveObject(selection);
-    canvas.renderAll();    
+    canvas.renderAll();
 }
 
-export function group(canvas) {
+export function group() {
+    const canvas = fabricStore.canvas;
     if (!canvas.getActiveObject()) {
         return;
     }
@@ -22,7 +26,8 @@ export function group(canvas) {
     canvas.requestRenderAll();
 }
 
-export function unGroup(canvas) {
+export function unGroup() {
+    const canvas = fabricStore.canvas;
     if (!canvas.getActiveObject()) {
         return;
     }
@@ -34,13 +39,15 @@ export function unGroup(canvas) {
 }
 
 let _clipboard = ref()
-export function Copy(canvas) {
+export function Copy() {
+    const canvas = fabricStore.canvas;
     canvas.getActiveObject().clone(function (cloned) {
         _clipboard.value = cloned;
     });
 }
 
-export function Paste(canvas) {
+export function Paste() {
+    const canvas = fabricStore.canvas;
     // clone again, so you can do multiple copies.
     _clipboard.value.clone(function (clonedObj) {
         canvas.discardActiveObject();
@@ -99,7 +106,7 @@ function anchorWrapper(anchorIndex, fn) {
 
 function getObjectSizeWithStroke(object) {
     var stroke = new fabric.Point(
-        object.strokeUniform ? 1 / object.scaleX : 1, 
+        object.strokeUniform ? 1 / object.scaleX : 1,
         object.strokeUniform ? 1 / object.scaleY : 1
     ).multiply(object.strokeWidth);
     return new fabric.Point(object.width + stroke.x, object.height + stroke.y);
@@ -120,7 +127,9 @@ function actionHandler(eventData, transform, x, y) {
     return true;
 }
 
-export function Edit(canvas) {
+export function Edit() {
+    const canvas = fabricStore.canvas
+
 
     var poly = canvas.getObjects()[0];
     canvas.setActiveObject(poly);
