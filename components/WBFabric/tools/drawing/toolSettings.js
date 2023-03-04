@@ -7,6 +7,7 @@ export function changePencilColor(color) {
     canvas = fabricStore.canvas;
 
     fabricStore.pencil.color = color;
+    if (fabricStore.selectedTool == 'pencil') canvas.freeDrawingBrush.color = color;
 }
 
 export function changeHighlighterColor(color, opacity = '85') {
@@ -14,6 +15,10 @@ export function changeHighlighterColor(color, opacity = '85') {
 
     fabricStore.highlighter.color = color;
     fabricStore.highlighter.opacity = opacity
+
+    if (fabricStore.selectedTool == 'highlighter') {
+        canvas.freeDrawingBrush.color = color + opacity;
+    }
 }
 
 export function changeBrushWidth(type, val) {
@@ -22,19 +27,18 @@ export function changeBrushWidth(type, val) {
     switch (type) {
         case 'pencil-width':
             fabricStore.pencil.width = val
-            // selectPencil();
-            // canvas.freeDrawingBrush.width = val;
+            if (fabricStore.selectedTool == 'pencil')
+                canvas.freeDrawingBrush.width = val;
             break
         case 'eraser-width':
             fabricStore.eraser.width = val
-
-            // canvas.freeDrawingBrush.width = val;
+            if (fabricStore.selectedTool == 'eraser')
+                canvas.freeDrawingBrush.width = val;
             break
         case 'highlighter-width':
             fabricStore.highlighter.width = val
-
-            // selectHighlighter();
-            // canvas.freeDrawingBrush.width = val;
+            if (fabricStore.selectedTool == 'highlighter')
+                canvas.freeDrawingBrush.width = val;
             break
     }
 }

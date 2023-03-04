@@ -26,7 +26,6 @@ import {
   Edit,
 } from "../utils/utilitySettings";
 export default {
-  props: ["canvas"],
   setup() {
     return {
       discardSelection,
