@@ -37,12 +37,20 @@ import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiTools, mdiMenu, mdiFormatColorFill } from "@mdi/js";
 import SettingsSidebar from "@/components/WBFabric/tools/drawing/SettingsSidebar.vue";
 import BackgroundSidebar from "@/components/WBFabric/tools/drawing/BackgroundSidebar.vue";
+import {
+  openNav,
+  closeNav,
+  openToolSettings,
+  openBackgroundSettings,
+} from "@/components/WBFabric/tools/drawing/toolSettings";
+
+const btnGroup = ref();
 
 onMounted(() => {
   (function () {
-    const btnGroup = document.getElementById("btn-group");
+    btnGroup.value = document.getElementById("btn-group");
 
-    const btns = btnGroup.getElementsByClassName("btn");
+    const btns = btnGroup.value.getElementsByClassName("btn");
 
     for (let i = 0; i < btns.length; i++) {
       btns[i].addEventListener("click", function () {
@@ -57,28 +65,6 @@ onMounted(() => {
     }
   })();
 });
-
-function openNav() {
-  document.getElementById("mySidebar").style.width = "240px";
-  document.getElementById("pagetop-container").style.marginLeft = "240px";
-}
-
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("pagetop-container").style.marginLeft = "0";
-  const current = document.getElementsByClassName("active");
-  current[0].className = current[0].className.replace(" active", "");
-}
-
-function openToolSettings() {
-  document.getElementById("sidebar-tool-settings").style.width = "300px";
-  document.getElementById("pagetop-container").style.marginLeft = "300px";
-}
-
-function openBackgroundSettings() {
-  document.getElementById("sidebar-bg-settings").style.width = "300px";
-  document.getElementById("pagetop-container").style.marginLeft = "300px";
-}
 </script>
 
 <style scoped>

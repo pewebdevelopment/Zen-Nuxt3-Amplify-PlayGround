@@ -11,20 +11,34 @@
       <option @click="discardSelection(canvas)">Discard Selection</option>
       <option @click="Edit(canvas)">Edit Polygon</option>
     </select>
-
-   
   </div>
   <br />
 </template>
 
 <script>
-import { discardSelection, multipleSelect, group, unGroup, Copy, Paste, Edit } from '../utils/utilitySettings'
+import {
+  discardSelection,
+  multipleSelect,
+  group,
+  unGroup,
+  Copy,
+  Paste,
+  Edit,
+} from "../utils/utilitySettings";
 export default {
-  props: ['canvas'],
+  props: ["canvas"],
   setup() {
-    return { discardSelection, multipleSelect, group, unGroup, Copy, Paste, Edit }
-  }
-}
+    return {
+      discardSelection,
+      multipleSelect,
+      group,
+      unGroup,
+      Copy,
+      Paste,
+      Edit,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -36,14 +50,5 @@ export default {
   left: 6px;
   padding: 10px;
   border-radius: 5px;
-}
-
-button {
-  background-color: aquamarine;
-  padding: 4px;
-  margin: 4px;
-  width: 100%;
-  border: 1.5px solid black;
-  border-radius: 6px;
 }
 </style>

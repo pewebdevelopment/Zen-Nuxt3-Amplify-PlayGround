@@ -1,26 +1,51 @@
 import { useWBFabric } from "@/stores/wbFabric";
-import { fabric } from 'fabric'
 
 const fabricStore = useWBFabric();
 let canvas = null;
+
+export function changePencilColor(color) {
+    canvas = fabricStore.canvas;
+
+    fabricStore.pencil.color = color;
+}
+
+export function changeHighlighterColor(color, opacity = '85') {
+    canvas = fabricStore.canvas;
+
+    fabricStore.highlighter.color = color;
+    fabricStore.highlighter.opacity = opacity
+}
 
 export function changeBrushWidth(type, val) {
     canvas = fabricStore.canvas;
 
     switch (type) {
-        case 'fader-pencil':
+        case 'pencil-width':
             fabricStore.pencil.width = val
-            canvas.freeDrawingBrush.width = val;
+            // selectPencil();
+            // canvas.freeDrawingBrush.width = val;
             break
-        case 'fader-eraser':
+        case 'eraser-width':
             fabricStore.eraser.width = val
-            canvas.freeDrawingBrush.width = val;
+
+            // canvas.freeDrawingBrush.width = val;
             break
-        case 'fader-highlighter':
+        case 'highlighter-width':
             fabricStore.highlighter.width = val
-            canvas.freeDrawingBrush.width = val;
+
+            // selectHighlighter();
+            // canvas.freeDrawingBrush.width = val;
             break
     }
+}
+
+export function changeBrushOpacity(type, val) {
+    canvas = fabricStore.canvas;
+
+    if (val.length == 1) val = '0' + val;
+
+    fabricStore.highlighter.opacity = val;
+    selectHighlighter();
 }
 
 export function changeBackgroundColor(val) {
@@ -37,10 +62,11 @@ export function selectHighlighter() {
 
     canvas.isDrawingMode = true;
     canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
+    fabricStore.currentDrawingBrush = canvas.freeDrawingBrush;
     canvas.freeDrawingBrush.width = fabricStore.highlighter.width;
     canvas.freeDrawingBrush.strokeLineCap = 'butt'
     canvas.freeDrawingBrush.strokeLineJoin = 'mitter'
-    canvas.freeDrawingBrush.color = 'rgba(255, 255, 0, 0.45)'
+    canvas.freeDrawingBrush.color = fabricStore.highlighter.color + fabricStore.highlighter.opacity;
 
     fabricStore.toolSettings = ((fabricStore.toolSettings && fabricStore.selectedTool == 'highlighter') ? false : true)
     fabricStore.selectedTool = 'highlighter'
@@ -52,6 +78,7 @@ export function selectEraser() {
 
     canvas.isDrawingMode = true;
     canvas.freeDrawingBrush = new fabric.EraserBrush(canvas);
+    fabricStore.currentDrawingBrush = canvas.freeDrawingBrush;
     canvas.freeDrawingBrush.width = fabricStore.eraser.width;
     fabricStore.toolSettings = ((fabricStore.toolSettings && fabricStore.selectedTool == 'eraser') ? false : true)
     fabricStore.selectedTool = 'eraser'
@@ -70,7 +97,9 @@ export function selectPencil() {
 
     canvas.isDrawingMode = true;
     canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
+    fabricStore.currentDrawingBrush = canvas.freeDrawingBrush;
     canvas.freeDrawingBrush.width = fabricStore.pencil.width;
+    canvas.freeDrawingBrush.color = fabricStore.pencil.color;
 
     fabricStore.toolSettings = (fabricStore.toolSettings && fabricStore.selectedTool == 'pencil') ? false : true
     fabricStore.selectedTool = 'pencil'
@@ -82,4 +111,72 @@ export function selectChangeBackground() {
     canvas.isDrawingMode = false;
     fabricStore.toolSettings = (fabricStore.toolSettings && fabricStore.selectedTool == 'changeBG') ? false : true
     fabricStore.selectedTool = 'changeBG'
+}
+
+export function openNav() {
+    document.getElementById("sidebar-tool-settings").style.width = "0";
+    document.getElementById("pagetop-container").style.marginLeft = "0";
+    document.getElementById("sidebar-bg-settings").style.width = "0";
+    document.getElementById("pagetop-container").style.marginLeft = "0";
+
+    document.getElementById("mySidebar").style.width = "240px";
+    document.getElementById("pagetop-container").style.marginLeft = "240px";
+}
+
+export function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("pagetop-container").style.marginLeft = "0";
+    const current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+}
+
+export function openToolSettings() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("pagetop-container").style.marginLeft = "0";
+    document.getElementById("sidebar-bg-settings").style.width = "0";
+    document.getElementById("pagetop-container").style.marginLeft = "0";
+
+    document.getElementById("sidebar-tool-settings").style.width = "300px";
+    document.getElementById("pagetop-container").style.marginLeft = "300px";
+}
+
+export function closeToolSettings() {
+    document.getElementById("sidebar-tool-settings").style.width = "0";
+    document.getElementById("pagetop-container").style.marginLeft = "0";
+    const current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+}
+
+export function openBackgroundSettings() {
+    document.getElementById("sidebar-tool-settings").style.width = "0";
+    document.getElementById("pagetop-container").style.marginLeft = "0";
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("pagetop-container").style.marginLeft = "0";
+
+    document.getElementById("sidebar-bg-settings").style.width = "300px";
+    document.getElementById("pagetop-container").style.marginLeft = "300px";
+}
+
+export function closeBackgroundSettings() {
+    document.getElementById("sidebar-bg-settings").style.width = "0";
+    document.getElementById("pagetop-container").style.marginLeft = "0";
+    const current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+}
+
+export function openToolPage(pageName, elmnt, color) {
+    let i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+    }
+
+    document.getElementById(pageName).style.display = "block";
+
+    elmnt.style.backgroundColor = color;
 }

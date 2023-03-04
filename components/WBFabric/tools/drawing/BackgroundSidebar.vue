@@ -15,7 +15,10 @@
 
 <script setup>
 import { useWBFabric } from "@/stores/wbFabric";
-import { changeBackgroundColor } from "@/components/WBFabric/tools/drawing/toolSettings";
+import {
+  changeBackgroundColor,
+  closeBackgroundSettings,
+} from "@/components/WBFabric/tools/drawing/toolSettings";
 
 const fabricStore = useWBFabric();
 
@@ -26,13 +29,6 @@ onMounted(() => {
     changeBackgroundColor(this.value);
   };
 });
-
-function closeBackgroundSettings() {
-  document.getElementById("sidebar-bg-settings").style.width = "0";
-  document.getElementById("pagetop-container").style.marginLeft = "0";
-  const current = document.getElementsByClassName("active");
-  current[0].className = current[0].className.replace(" active", "");
-}
 </script>
 
 <style scoped>
