@@ -14,39 +14,43 @@ import {
   mdiMessage,
   mdiFastForwardOutline,
   mdiBook,
-  mdiDraw,
   mdiFilePdfBox,
+  mdiPencil,
+  mdiEraser,
+  mdiMarker,
+  mdiFormatColorFill,
+  mdiCursorDefaultOutline
 } from "@mdi/js";
 
 export default [
   {
     to: "",
-    label: "Draw",
-    icon: mdiDraw,
+    label: "Move",
+    icon: mdiCursorDefaultOutline,
     id: 1
   },
   {
     to: "",
-    label: "Random",
-    icon: mdiBook,
+    label: "Pencil",
+    icon: mdiPencil,
     id: 2
+  },
+  {
+    to: "",
+    label: "Highlighter",
+    icon: mdiMarker,
+    id: 3
   },
   {
     to: "",
     label: "Import PDF",
     icon: mdiFilePdfBox,
-    id: 3
-  },
-  {
-    to: "",
-    label: "Custom Filter Swap Colors",
-    icon: mdiBallot,
     id: 4
   },
   {
     to: "",
-    label: "Composed Filter for duotone",
-    icon: mdiViewQuilt,
+    label: "Eraser",
+    icon: mdiEraser,
     id: 5
   },
   {

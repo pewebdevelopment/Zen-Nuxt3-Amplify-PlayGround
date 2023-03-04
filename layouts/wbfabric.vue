@@ -1,21 +1,23 @@
 <script setup>
 import { computed } from "vue";
-import { mdiForwardburger, mdiBackburger, mdiMenu } from "@mdi/js";
 import { useRouter } from "vue-router";
 import menuAsideFabric from "@/configs/menuAsideFabric";
-import menuNavBar from "@/configs/menuNavBar.js";
 import { useMainStore } from "@/stores/main.js";
 import { useLayoutStore } from "@/stores/layout.js";
 import { useStyleStore } from "@/stores/style.js";
-import BaseIcon from "@/components/Display/BaseIcon.vue";
-import FormControl from "@/components/Forms/FormControl.vue";
-import NavBar from "@/components/NavBar/NavBar.vue";
 import FabricAsideMenu from "@/components/Asidemenu/FabricAsideMenu.vue";
-import NavBarItemPlain from "@/components/NavBar/NavBarItemPlain.vue";
+import FabricExtraOptions from "@/components/Asidemenu/FabricExtraOptions.vue";
 import { useAuthStore } from "@/stores/authStore";
 import { useWBFabric } from "@/stores/wbFabric";
 import Modal from "../components/WBFabric/utils/Modal.vue";
 import { renderNewOptions } from "~~/components/WBFabric/utils/utilitySettings";
+import {
+  selectPencil,
+  selectCursor,
+  selectEraser,
+  selectHighlighter,
+  selectChangeBackground,
+} from "@/components/WBFabric/tools/drawing/toolSettings";
 
 useMainStore().setUser({
   name: "Zenith Physics",
@@ -66,24 +68,23 @@ const menuClick = (event, item) => {
 
   switch (item.id) {
     case 1:
-      // console.log("id", 1);
-      fabricStore.toggleDrawingMode();
+      selectCursor();
       break;
 
     case 2:
+      selectPencil();
       break;
 
     case 3:
-      // console.log("id", 3);
-      fabricStore.toggleModal();
+      selectHighlighter();
       break;
 
     case 4:
-      console.log("id", 4);
+      fabricStore.toggleModal();
       break;
 
     case 5:
-      console.log("id", 5);
+      selectEraser();
       break;
 
     case 6:
