@@ -79,7 +79,6 @@ const menuClick = (event, item) => {
       break;
 
     case 4:
-      renderNewOptions()
       console.log("id", 4);
       break;
 
@@ -88,6 +87,11 @@ const menuClick = (event, item) => {
       break;
 
     case 6:
+      console.log("id", 6);
+      break;
+
+    case 7:
+      renderNewOptions()
       console.log("id", 6);
       break;
 
