@@ -1,5 +1,7 @@
 import { fabric } from "fabric";
 import { useWBFabric } from "~~/stores/wbFabric";
+import img from '@/assets/img/indexremovebgpreview.png'
+
 let fabricStore = useWBFabric();
 export function discardSelection() {
     const canvas = fabricStore.canvas;
@@ -154,4 +156,76 @@ export function Edit() {
     }
     poly.hasBorders = !poly.edit;
     canvas.requestRenderAll();
+}
+
+function removeAllElements(isAll = false) {
+    const canvas = fabricStore.canvas;
+    if (isAll) {
+        canvas.getObjects().forEach((o) => {
+            canvas.remove(o);
+        });
+    } else {
+        canvas.getActiveObjects().forEach((o) => {
+            canvas.remove(o);
+        });
+    }
+}
+export function renderNewOptions() {
+    let elements = [];
+    function additionalEle() {
+        elements.push(...[new fabric.Circle({
+            radius: 70, fill: '#f55', top: 80, left: 100, borderColor: 'red',
+            cornerColor: 'green',
+            cornerSize: 6,
+            transparentCorners: false
+        }),
+        new fabric.Circle({ radius: 70, fill: '#f55', top: 80, left: 300, hasControls: false }),
+        new fabric.Circle({ radius: 70, fill: '#f55', top: 80, left: 500, hasControls: false, hasBorders: false }),
+        new fabric.Rect({ height: 150, width: 150, fill: '#f55', top: 80, left: 700, selectable: false }),
+        new fabric.Rect({ height: 150, width: 150, fill: '#f55', top: 80, left: 900, lockRotation: true }),
+        new fabric.Rect({ height: 150, width: 150, fill: '#f55', top: 80, left: 1100, lockScalingY: true, lockScalingX: true }),
+        new fabric.Rect({ height: 150, width: 150, fill: '#f55', top: 400, left: 100, lockMovementX: true , hasRotatingPoint: true}),
+        new fabric.Rect({ height: 150, width: 150, fill: '#f55', top: 400, left: 300, lockMovementY: true })
+        ])
+
+    }
+    const canvas = fabricStore.canvas;
+    removeAllElements(true)
+    additionalEle();
+    elements.forEach((ele) => {
+        canvas.add(ele)
+    })
+    canvas.setOverlayImage(img, canvas.renderAll.bind(canvas));
+    canvas.on('mouse:down', function (e) { animate(e, 1, canvas); });
+    canvas.on('mouse:up', function (e) { animate(e, 0, canvas); });
+
+}
+
+function animate(e, dir, canvas) {
+    if (e.target) {
+        fabric.util.animate({
+            startValue: e.target.angle,
+            endValue: dir ? 10 : 0,
+            duration: 100,
+            onChange: function (value) {
+                e.target.rotate(value);
+                canvas.renderAll();
+            },
+            onComplete: function () {
+                e.target.setCoords();
+            }
+        });
+        fabric.util.animate({
+            startValue: e.target.scaleX,
+            endValue: dir ? 1.2 : 1,
+            duration: 100,
+            onChange: function (value) {
+                e.target.scale(value);
+                canvas.renderAll();
+            },
+            onComplete: function () {
+                e.target.setCoords();
+            }
+        });
+    }
 }

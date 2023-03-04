@@ -13,6 +13,7 @@ function _setCanvasProperties(canvas) {
 
     const par = document.getElementById("main");
     canvas.setDimensions({ width: par.offsetWidth, height: par.offsetHeight });
+    canvas.hoverCursor = 'pointer';
     fabricStore.canvas = canvas;
 }
 

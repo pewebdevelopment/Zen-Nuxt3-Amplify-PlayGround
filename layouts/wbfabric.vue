@@ -15,6 +15,7 @@ import NavBarItemPlain from "@/components/NavBar/NavBarItemPlain.vue";
 import { useAuthStore } from "@/stores/authStore";
 import { useWBFabric } from "@/stores/wbFabric";
 import Modal from "../components/WBFabric/utils/Modal.vue";
+import { renderNewOptions } from "~~/components/WBFabric/utils/utilitySettings";
 
 useMainStore().setUser({
   name: "Zenith Physics",
@@ -70,7 +71,7 @@ const menuClick = (event, item) => {
       break;
 
     case 2:
-      console.log("id", 2);
+      renderNewOptions()
       break;
 
     case 3:
