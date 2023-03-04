@@ -28,7 +28,7 @@ const actions = {
   },
   toggleDrawingMode() {
     this.drawingMode = !this.drawingMode
-  }
+  },
 };
 
 const getters = {
