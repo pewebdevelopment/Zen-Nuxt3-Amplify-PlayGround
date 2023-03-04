@@ -102,37 +102,66 @@ const menuClick = (event, item) => {
 
 <template>
   <div>
-    <div :class="{
-      dark: styleStore.darkMode,
-      'overflow-hidden lg:overflow-visible':
-        layoutStore.isAsideMobileExpanded,
-    }">
-      <div :class="[
-        layoutAsidePadding,
-        { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
-      ]"
-        class="pt-14 min-h-screen w-screen transition-position lg:w-auto bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
-        <!-- The  Navbar -->
-        <NavBar :menu="menuNavBar" :class="[
+    <div
+      id="pagetop-container"
+      :class="{
+        dark: styleStore.darkMode,
+        'lg:overflow-visible': layoutStore.isAsideMobileExpanded,
+      }"
+      class="overflow-hidden"
+    >
+      <div
+        :class="[
           layoutAsidePadding,
           { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
-        ]" @menu-click="menuClick">
-          <NavBarItemPlain display="flex lg:hidden" @click.prevent="layoutStore.asideMobileToggle()">
-            <BaseIcon :path="
-              layoutStore.isAsideMobileExpanded
-                ? mdiBackburger
-                : mdiForwardburger
-            " size="24" />
+        ]"
+        class="relative pt-14 min-h-screen w-screen transition-position lg:w-screen bg-gray-50 dark:bg-slate-800 dark:text-slate-100"
+      >
+        <!-- The  Navbar -->
+        <!-- <NavBar
+          :menu="menuNavBar"
+          :class="[
+            layoutAsidePadding,
+            { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
+          ]"
+          @menu-click="menuClick"
+        >
+          <NavBarItemPlain
+            display="flex lg:hidden"
+            @click.prevent="layoutStore.asideMobileToggle()"
+          >
+            <BaseIcon
+              :path="
+                layoutStore.isAsideMobileExpanded
+                  ? mdiBackburger
+                  : mdiForwardburger
+              "
+              size="24"
+            />
           </NavBarItemPlain>
-          <NavBarItemPlain display="hidden lg:flex xl:hidden" @click.prevent="layoutStore.asideLgToggle()">
-            <BaseIcon :path="layoutStore.isAsideLgActive ? mdiBackburger : mdiMenu" size="24" />
+          <NavBarItemPlain
+            display="hidden lg:flex xl:hidden"
+            @click.prevent="layoutStore.asideLgToggle()"
+          >
+            <BaseIcon
+              :path="layoutStore.isAsideLgActive ? mdiBackburger : mdiMenu"
+              size="24"
+            />
           </NavBarItemPlain>
           <NavBarItemPlain use-margin>
-            <FormControl placeholder="Search (ctrl+k)" ctrl-k-focus transparent borderless />
+            <FormControl
+              placeholder="Search (ctrl+k)"
+              ctrl-k-focus
+              transparent
+              borderless
+            />
           </NavBarItemPlain>
-        </NavBar>
+        </NavBar> -->
         <!-- The  Premium Aside Menu -->
         <FabricAsideMenu :menu="menuAsideFabric" @menu-click="menuClick" />
+
+        <FabricExtraOptions />
+
         <Teleport to="body">
           <!-- use the modal component, pass in the prop -->
           <modal :show="fabricStore.showModal">
@@ -144,7 +173,10 @@ const menuClick = (event, item) => {
                 <input id="input-pdf" type="file" accept="application/pdf" />
               </div>
               <br />
-              <button class="modal-default-button" @click="fabricStore.toggleModal">
+              <button
+                class="modal-default-button"
+                @click="fabricStore.toggleModal"
+              >
                 Cancel
               </button>
             </template>
