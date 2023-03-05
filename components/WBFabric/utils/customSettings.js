@@ -1,5 +1,6 @@
 import { useWBFabric } from "@/stores/wbFabric";
 import history from "@/components/WBFabric/tools/history";
+import MouseEvents from "../tools/mouseEvent";
 const fabricStore = useWBFabric();
 
 function _setCanvasProperties(canvas) {
@@ -20,22 +21,25 @@ function _setCanvasProperties(canvas) {
 function _addRectangle(canvas) {
     
     var modifiedHandler = function (evt) {
-        var modifiedObject = evt.target;
-        // console.log('object moved',modifiedObject,modifiedObject.get('left'), modifiedObject.get('top'),history);
-        const newrect = 
-        {
+        if(canvas.getObjects()[0].name==='rect'){   // for handling stickman event
+
+            var modifiedObject = evt.target;
+            const newrect = 
+            {
+                
+                fill: modifiedObject.get('fill'),
+                width: modifiedObject.get('width'),
+                height: modifiedObject.get('height'),
+                left: modifiedObject.get('left'),
+                top:modifiedObject.get('top'),
+                scaleX:modifiedObject.get('scaleX'),
+                scaleY:modifiedObject.get('scaleY'),
+                
+            };
             
-            fill: modifiedObject.get('fill'),
-            width: modifiedObject.get('width'),
-            height: modifiedObject.get('height'),
-            left: modifiedObject.get('left'),
-            top:modifiedObject.get('top'),
-            scaleX:modifiedObject.get('scaleX'),
-            scaleY:modifiedObject.get('scaleY'),
-            
-        };
+            history.add(newrect,canvas);
+        }
         
-        history.add(newrect,canvas);
         
     };
     
@@ -47,6 +51,7 @@ function _addRectangle(canvas) {
         left: 300,
         right:300
     },canvas);
+    MouseEvents.add(canvas);
     
 }
 

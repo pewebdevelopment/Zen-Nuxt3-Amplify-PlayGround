@@ -16,8 +16,8 @@ class History {
     this.canvas=canvas;
     
     this.canvas.clear();
+    rect.name='rect';
     canvas.add(rect);
-    
     this.current = this.history.length;
   }
   undo() {
@@ -25,6 +25,7 @@ class History {
       
       this.canvas.clear();
       const rect = new fabric.Rect(this.history[--this.current]);
+      rect.name='rect';  // for handling stickman event
       this.canvas.add(rect);
       
     }
@@ -33,6 +34,7 @@ class History {
     if (this.history.length > this.current) {
       this.canvas.clear();
       const rect = new fabric.Rect(this.history[this.current++]);
+      rect.name='rect';
       this.canvas.add(rect);
       
     }
