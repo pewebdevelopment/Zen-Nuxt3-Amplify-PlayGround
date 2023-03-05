@@ -1,6 +1,6 @@
 <template>
   <div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" @click="closeNav">&times;</a>
+    <a class="closebtn hover:cursor-pointer" @click="closeNav">&times;</a>
     <a href="#">About</a>
     <a href="#">Services</a>
     <a href="#">Clients</a>
@@ -68,14 +68,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* The sidebar menu */
 .sidebar {
-  height: 100vh; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 50; /* Stay on top */
+  height: 100vh;
+  width: 0;
+  position: fixed;
+  z-index: 50;
   top: 0;
-  left: 0;
+  right: 0;
   background-color: #111; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */

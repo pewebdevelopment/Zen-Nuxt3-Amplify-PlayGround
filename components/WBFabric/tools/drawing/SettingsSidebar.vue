@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar-tool-settings" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" @click="closeToolSettings"
+    <a class="closebtn hover:cursor-pointer" @click="closeToolSettings"
       >&times;</a
     >
     <div class="flex">
@@ -40,7 +40,7 @@
           min="1"
           max="100"
           :value="fabricStore.pencil.width"
-          class="slider-width"
+          class="tools-slider-width"
           id="pencil-width"
           list="settings-pencil"
         />
@@ -61,7 +61,7 @@
           min="1"
           max="100"
           :value="fabricStore.eraser.width"
-          class="slider-width"
+          class="tools-slider-width"
           id="eraser-width"
           list="settings-eraser"
         />
@@ -97,7 +97,7 @@
           min="1"
           max="100"
           :value="fabricStore.highlighter.width"
-          class="slider-width"
+          class="tools-slider-width"
           id="highlighter-width"
           list="highlighter-width-list"
         />
@@ -118,7 +118,7 @@
           min="10"
           max="90"
           :value="parseInt(fabricStore.highlighter.opacity)"
-          class="slider-opacity"
+          class="tools-slider-opacity"
           id="highlighter-opacity"
           list="highlighter-opacity-list"
         />
@@ -149,8 +149,10 @@ import {
 const fabricStore = useWBFabric();
 
 onMounted(() => {
-  const widthSliders = document.getElementsByClassName("slider-width");
-  const opacitySliders = document.getElementsByClassName("slider-opacity");
+  const widthSliders = document.getElementsByClassName("tools-slider-width");
+  const opacitySliders = document.getElementsByClassName(
+    "tools-slider-opacity"
+  );
 
   for (let i = 0; i < widthSliders.length; i++) {
     const s = widthSliders[i];
@@ -196,8 +198,8 @@ onMounted(() => {
   margin-left: 50px;
 }
 
-.slider-width,
-.slider-opacity {
+.tools-slider-width,
+.tools-slider-opacity {
   width: 100%;
   height: 25px;
   border-radius: 5px;

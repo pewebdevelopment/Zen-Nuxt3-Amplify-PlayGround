@@ -34,7 +34,15 @@ const state = () => ({
     "#8D6E63", // LightBrown
     "#607D8B", //Slate
     "#263238", // DarkSlate
-  ]
+  ],
+  alpha: [
+    '33', '4d', '66', '80', '99', 'b3', 'cc', 'e6', ''
+  ],
+  grid: {
+    lineWidth: 0,
+    horizontalSpacing: 0,
+    verticalSpacing: 0
+  }
 });
 
 const actions = {
