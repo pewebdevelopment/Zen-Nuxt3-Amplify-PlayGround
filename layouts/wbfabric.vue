@@ -10,6 +10,7 @@ import FabricExtraOptions from "@/components/Asidemenu/FabricExtraOptions.vue";
 import { useAuthStore } from "@/stores/authStore";
 import { useWBFabric } from "@/stores/wbFabric";
 import Modal from "../components/WBFabric/utils/Modal.vue";
+import { renderNewOptions } from "~~/components/WBFabric/utils/utilitySettings";
 import {
   selectPencil,
   selectCursor,
@@ -87,6 +88,11 @@ const menuClick = (event, item) => {
       break;
 
     case 6:
+      console.log("id", 6);
+      break;
+
+    case 7:
+      renderNewOptions()
       console.log("id", 6);
       break;
 
