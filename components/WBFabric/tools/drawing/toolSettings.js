@@ -11,14 +11,18 @@ export function changePencilColor(color) {
     if (fabricStore.selectedTool == 'pencil') canvas.freeDrawingBrush.color = color;
 }
 
-export function changeHighlighterColor(color, opacity = '85') {
+export function changeHighlighterColor(color, opacity = '85', fromPalette = false) {
     canvas = fabricStore.canvas;
 
-    fabricStore.highlighter.color = color;
-    fabricStore.highlighter.opacity = opacity
 
+    fabricStore.highlighter.color = color;
     if (fabricStore.selectedTool == 'highlighter') {
-        canvas.freeDrawingBrush.color = color + opacity;
+        if (!fromPalette) {
+            fabricStore.highlighter.opacity = opacity
+            canvas.freeDrawingBrush.color = color;
+        }
+        else
+            canvas.freeDrawingBrush.color = color + opacity;
     }
 }
 
@@ -135,7 +139,7 @@ export function openToolSettings() {
     document.getElementById("mySidebar").style.width = "0";
     document.getElementById("sidebar-bg-settings").style.width = "0";
 
-    document.getElementById("sidebar-tool-settings").style.width = "300px";
+    document.getElementById("sidebar-tool-settings").style.width = "400px";
 }
 
 export function closeToolSettings() {

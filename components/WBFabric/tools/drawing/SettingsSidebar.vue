@@ -1,5 +1,8 @@
 <template>
-  <div id="sidebar-tool-settings" class="sidebar">
+  <div
+    id="sidebar-tool-settings"
+    class="sidebar scroll-smooth scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-800 scrollbar-thumb-rounded"
+  >
     <a class="closebtn hover:cursor-pointer" @click="closeToolSettings"
       >&times;</a
     >
@@ -23,14 +26,33 @@
       <div>
         <p>Pen Color</p>
         <br />
-        <div class="grid grid-cols-4 gap-4">
+        <div class="w-[14rem] grid grid-cols-4 gap-4">
           <div
             v-for="color in fabricStore.vividColours"
             class="h-10 w-10 rounded-full hover:scale-125 hover:cursor-pointer"
             :style="`background-color:${color}`"
             @click="changePencilColor(color)"
           ></div>
+          <div
+            class="flex justify-center items-center rounded-full h-10 w-10 hover:scale-125 hover:cursor-pointer"
+            @click="showPencilColorPanel = !showPencilColorPanel"
+          >
+            <SvgIcon type="mdi" :path="mdiPlus" size="36" />
+          </div>
         </div>
+        <br />
+        <Transition name="slide-fade">
+          <div class="grid grid-rows-9" v-if="showPencilColorPanel">
+            <div class="flex" v-for="shade in fabricStore.alpha">
+              <div
+                v-for="color in fabricStore.vividColours"
+                class="h-6 w-6 hover:scale-125 hover:cursor-pointer"
+                :style="`background-color:${color + shade}`"
+                @click="selectColor(color + shade, 'pencil')"
+              ></div>
+            </div>
+          </div>
+        </Transition>
       </div>
 
       <div>
@@ -80,14 +102,33 @@
       <div>
         <p>Highlighter Color</p>
         <br />
-        <div class="grid grid-cols-4 gap-4">
+        <div class="w-[14rem] grid grid-cols-4 gap-4">
           <div
             v-for="color in fabricStore.vividColours"
             class="h-10 w-10 rounded-full hover:scale-125 hover:cursor-pointer"
             :style="`background-color:${color}`"
             @click="changeHighlighterColor(color)"
           ></div>
+          <div
+            class="flex justify-center items-center rounded-full h-10 w-10 hover:scale-125 hover:cursor-pointer"
+            @click="showHLColorPanel = !showHLColorPanel"
+          >
+            <SvgIcon type="mdi" :path="mdiPlus" size="36" />
+          </div>
         </div>
+        <br />
+        <Transition name="slide-fade">
+          <div class="grid grid-rows-9" v-if="showHLColorPanel">
+            <div class="flex" v-for="shade in fabricStore.alpha">
+              <div
+                v-for="color in fabricStore.vividColours"
+                class="h-6 w-6 hover:scale-125 hover:cursor-pointer"
+                :style="`background-color:${color + shade}`"
+                @click="selectColor(color + shade, 'highlighter')"
+              ></div>
+            </div>
+          </div>
+        </Transition>
       </div>
 
       <div>
@@ -136,6 +177,8 @@
 </template>
 
 <script setup>
+import SvgIcon from "@jamescoyle/vue-icon";
+import { mdiPlus } from "@mdi/js";
 import { useWBFabric } from "@/stores/wbFabric";
 import {
   changeBrushWidth,
@@ -147,6 +190,8 @@ import {
 } from "./toolSettings";
 
 const fabricStore = useWBFabric();
+const showPencilColorPanel = ref(false);
+const showHLColorPanel = ref(false);
 
 onMounted(() => {
   const widthSliders = document.getElementsByClassName("tools-slider-width");
@@ -170,13 +215,19 @@ onMounted(() => {
 
   document.getElementById("defaultOpen").click();
 });
+
+function selectColor(color, tool) {
+  if (tool == "pencil") {
+    changePencilColor(color);
+    showPencilColorPanel.value = !showPencilColorPanel.value;
+  } else if (tool == "highlighter") {
+    changeHighlighterColor(color, "1", false);
+    showHLColorPanel.value = !showHLColorPanel.value;
+  }
+}
 </script>
 
 <style scoped>
-#sidebar-tool-settings {
-  overflow: hidden;
-}
-
 .sidebar a {
   padding: 8px 8px 8px 24px;
   text-decoration: none;
@@ -229,5 +280,19 @@ onMounted(() => {
   display: none;
   padding: 16px;
   height: 100%;
+}
+
+.slide-fade-enter-active {
+  transition: all 0.2s ease-in;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
 }
 </style>
