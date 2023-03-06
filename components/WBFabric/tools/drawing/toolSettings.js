@@ -224,6 +224,7 @@ function _drawGrid({ lineWidth, verticalSpacing, horizontalSpacing }) {
         selectable: false,
         evented: false,
         __grid: true,
+        erasable: false
     });
 
     let gridGroup = toRaw(canvas.getObjects().filter(
