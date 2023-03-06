@@ -1,5 +1,8 @@
 <template>
-  <div id="sidebar-bg-settings" class="sidebar">
+  <div
+    id="sidebar-bg-settings"
+    class="sidebar scroll-smooth scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-800 scrollbar-thumb-rounded"
+  >
     <a class="closebtn hover:cursor-pointer" @click="closeBackgroundSettings"
       >&times;</a
     >
@@ -15,10 +18,10 @@
           :style="`background-color:${fabricStore.background}`"
         ></div>
         <Transition name="slide-fade">
-          <div class="grid grid-rows-14" v-if="showColorPanel">
-            <div class="flex" v-for="color in fabricStore.vividColours">
+          <div class="grid grid-rows-9" v-if="showColorPanel">
+            <div class="flex" v-for="shade in fabricStore.alpha">
               <div
-                v-for="shade in fabricStore.alpha"
+                v-for="color in fabricStore.vividColours"
                 class="h-6 w-6 hover:scale-125 hover:cursor-pointer"
                 :style="`background-color:${color + shade}`"
                 @click="selectColor(color + shade)"
@@ -34,7 +37,7 @@
         <input
           type="range"
           min="1"
-          max="100"
+          max="25"
           :value="fabricStore.grid.lineWidth"
           class="grid-slider-width"
           id="line-width"
@@ -42,51 +45,53 @@
         />
         <datalist id="settings-grid-width">
           <option>0</option>
+          <option>5</option>
+          <option>10</option>
+          <option>15</option>
           <option>20</option>
-          <option>40</option>
-          <option>60</option>
-          <option>80</option>
-          <option>100</option>
+          <option>25</option>
         </datalist>
       </div>
       <div>
         <label for="grid-spacing-vertical">Vertical Spacing </label>
         <input
           type="range"
-          min="1"
-          max="100"
+          min="0"
+          max="200"
+          step="10"
           :value="fabricStore.grid.verticalSpacing"
           class="grid-slider-width"
           id="grid-spacing-vertical"
-          list="settings-grid"
+          list="settings-grid-v"
         />
         <datalist id="settings-grid-v">
           <option>0</option>
-          <option>20</option>
           <option>40</option>
-          <option>60</option>
           <option>80</option>
-          <option>100</option>
+          <option>120</option>
+          <option>160</option>
+          <option>200</option>
         </datalist>
       </div>
       <div>
         <label for="grid-spacing-horizontal">Horizontal Spacing </label>
         <input
           type="range"
-          min="1"
-          max="100"
+          min="0"
+          max="200"
+          step="10"
           :value="fabricStore.grid.horizontalSpacing"
           class="grid-slider-width"
           id="grid-spacing-horizontal"
-          list="settings-pencil"
+          list="settings-grid-h"
         />
         <datalist id="settings-grid-h">
           <option>0</option>
-          <option>20</option>
           <option>40</option>
-          <option>60</option>
           <option>80</option>
-          <option>100</option>
+          <option>120</option>
+          <option>160</option>
+          <option>200</option>
         </datalist>
       </div>
     </div>
@@ -98,6 +103,7 @@ import { useWBFabric } from "@/stores/wbFabric";
 import {
   changeBackgroundColor,
   closeBackgroundSettings,
+  changeGridSettings,
 } from "@/components/WBFabric/tools/drawing/toolSettings";
 
 const fabricStore = useWBFabric();
@@ -113,7 +119,12 @@ onMounted(() => {
 
   const gridSliders = document.getElementsByClassName("grid-slider-width");
 
-  console.log(gridSliders);
+  for (let i = 0; i < gridSliders.length; i++) {
+    const s = gridSliders[i];
+    s.onchange = function () {
+      changeGridSettings(s.id, parseInt(this.value));
+    };
+  }
 });
 
 function selectColor(color) {
@@ -124,7 +135,7 @@ function selectColor(color) {
 
 <style scoped>
 .sidebar a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 8px 8px 16px;
   text-decoration: none;
   font-size: 25px;
   color: #818181;

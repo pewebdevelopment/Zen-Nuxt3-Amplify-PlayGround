@@ -16,7 +16,6 @@ import {
   selectCursor,
   selectEraser,
   selectHighlighter,
-  selectChangeBackground,
 } from "@/components/WBFabric/tools/drawing/toolSettings";
 
 useMainStore().setUser({
@@ -92,8 +91,7 @@ const menuClick = (event, item) => {
       break;
 
     case 7:
-      renderNewOptions()
-      console.log("id", 6);
+      renderNewOptions();
       break;
 
     default:

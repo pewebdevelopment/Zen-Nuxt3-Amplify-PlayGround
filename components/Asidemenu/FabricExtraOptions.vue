@@ -1,15 +1,27 @@
 <template>
   <div id="mySidebar" class="sidebar">
     <a class="closebtn hover:cursor-pointer" @click="closeNav">&times;</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+    <a href="#">Sample 1</a>
+    <a href="#">Sample 2</a>
+    <a href="#">Sample 3</a>
+    <a href="#">Sample 4</a>
   </div>
   <SettingsSidebar />
   <BackgroundSidebar />
+
   <div class="w-[5rem] z-50 absolute left-0 bottom-1">
-    <div id="btn-group" class="flex flex-col space-y-4 items-center">
+    <div
+      class="mb-10 flex flex-col space-y-2 items-center w-[5rem] z-50 relative inset-x-0"
+    >
+      <button>
+        <SvgIcon type="mdi" :path="mdiArrowULeftTop" />
+      </button>
+      <button>
+        <SvgIcon type="mdi" :path="mdiArrowURightTop" />
+      </button>
+    </div>
+
+    <div id="btn-group" class="flex flex-col space-y-2 items-center">
       <button
         class="btn p-2 rounded-full bg-[#101010cc] hover:bg-[#23232366]"
         @click="openBackgroundSettings"
@@ -34,7 +46,13 @@
 
 <script setup>
 import SvgIcon from "@jamescoyle/vue-icon";
-import { mdiTools, mdiMenu, mdiFormatColorFill } from "@mdi/js";
+import {
+  mdiTools,
+  mdiMenu,
+  mdiFormatColorFill,
+  mdiArrowULeftTop,
+  mdiArrowURightTop,
+} from "@mdi/js";
 import SettingsSidebar from "@/components/WBFabric/tools/drawing/SettingsSidebar.vue";
 import BackgroundSidebar from "@/components/WBFabric/tools/drawing/BackgroundSidebar.vue";
 import {
@@ -75,10 +93,10 @@ onMounted(() => {
   z-index: 50;
   top: 0;
   right: 0;
-  background-color: #111; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+  background-color: #111; 
+  overflow-x: hidden; 
+  padding-top: 60px; 
+  transition: 0.5s; 
 }
 
 .sidebar a {
@@ -102,13 +120,11 @@ onMounted(() => {
   margin-left: 50px;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #pagetop-container {
-  transition: margin-left 0.5s; /* If you want a transition effect */
+  transition: margin-left 0.5s;
   padding: 20px;
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidebar {
     padding-top: 15px;

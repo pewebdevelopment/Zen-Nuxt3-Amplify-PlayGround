@@ -1,4 +1,5 @@
 import { useWBFabric } from "@/stores/wbFabric";
+import { toRaw } from 'vue';
 
 const fabricStore = useWBFabric();
 let canvas = null;
@@ -119,29 +120,22 @@ export function selectChangeBackground() {
 
 export function openNav() {
     document.getElementById("sidebar-tool-settings").style.width = "0";
-    // document.getElementById("pagetop-container").style.marginLeft = "0";
     document.getElementById("sidebar-bg-settings").style.width = "0";
-    // document.getElementById("pagetop-container").style.marginLeft = "0";
 
     document.getElementById("mySidebar").style.width = "240px";
-    // document.getElementById("pagetop-container").style.marginLeft = "240px";
 }
 
 export function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
-    // document.getElementById("pagetop-container").style.marginLeft = "0";
     const current = document.getElementsByClassName("active");
     current[0].className = current[0].className.replace(" active", "");
 }
 
 export function openToolSettings() {
     document.getElementById("mySidebar").style.width = "0";
-    // document.getElementById("pagetop-container").style.marginLeft = "0";
     document.getElementById("sidebar-bg-settings").style.width = "0";
-    // document.getElementById("pagetop-container").style.marginLeft = "0";
 
     document.getElementById("sidebar-tool-settings").style.width = "300px";
-    // document.getElementById("pagetop-container").style.marginLeft = "300px";
 }
 
 export function closeToolSettings() {
@@ -153,17 +147,13 @@ export function closeToolSettings() {
 
 export function openBackgroundSettings() {
     document.getElementById("sidebar-tool-settings").style.width = "0";
-    // document.getElementById("pagetop-container").style.marginLeft = "0";
     document.getElementById("mySidebar").style.width = "0";
-    // document.getElementById("pagetop-container").style.marginLeft = "0";
 
-    document.getElementById("sidebar-bg-settings").style.width = "300px";
-    // document.getElementById("pagetop-container").style.marginLeft = "300px";
+    document.getElementById("sidebar-bg-settings").style.width = "400px";
 }
 
 export function closeBackgroundSettings() {
     document.getElementById("sidebar-bg-settings").style.width = "0";
-    // document.getElementById("pagetop-container").style.marginLeft = "0";
     const current = document.getElementsByClassName("active");
     current[0].className = current[0].className.replace(" active", "");
 }
@@ -185,28 +175,76 @@ export function openToolPage(pageName, elmnt, color) {
     elmnt.style.backgroundColor = color;
 }
 
-export function drawGrid() {
+// Grid functions
+
+function _drawGrid({ lineWidth, verticalSpacing, horizontalSpacing }) {
     canvas = fabricStore.canvas;
 
-    let gridWidth = fabricStore.grid.verticalSpacing;
-    let gridHeight = fabricStore.grid.horizontalSpacing;
+    const width = canvas.getWidth();
+    const height = canvas.getHeight();
 
-    let oGridGroup = new fabric.Group([], { left: 0, top: 0 });
+    const left = 40;
+    const top = 40;
 
-    let gridSize = 20; // define grid size
+    const lines = [];
+    const lineOption = {
+        stroke: "rgba(0,0,0,.3)",
+        strokeWidth: lineWidth,
+        selectable: false,
+    };
 
-    // define presentation option of grid
-    let lineOption = { stroke: 'rgba(0,0,0,.4)', strokeWidth: 1, selectable: false, strokeDashArray: [3, 3] };
-
-    // do in two steps to limit the calculations
-    // first loop for vertical line
-    for (let i = Math.ceil(gridWidth / gridSize); i--;) {
-        oGridGroup.add(new fabric.Line([gridSize * i, 0, gridSize * i, gridHeight], lineOption));
+    if (verticalSpacing != 0) {
+        for (let i = Math.ceil(width / verticalSpacing); i--;) {
+            lines.push(
+                new fabric.Line(
+                    [verticalSpacing * i, -top, verticalSpacing * i, height],
+                    lineOption
+                )
+            );
+        }
     }
-    // second loop for horizontal line
-    for (let i = Math.ceil(gridHeight / gridSize); i--;) {
-        oGridGroup.add(new fabric.Line([0, gridSize * i, gridWidth, gridSize * i], lineOption));
+
+    if (horizontalSpacing != 0) {
+        for (let i = Math.ceil(height / horizontalSpacing); i--;) {
+            lines.push(
+                new fabric.Line(
+                    [-left, horizontalSpacing * i, width, horizontalSpacing * i],
+                    lineOption
+                )
+            );
+        }
     }
-    // Group add to canvas
+    const oGridGroup = new fabric.Group(lines, {
+        left: 0,
+        top: 0,
+        selectable: false,
+        evented: false,
+        __grid: true,
+    });
+
+    let gridGroup = toRaw(canvas.getObjects().filter(
+        obj => obj.__grid === true
+    )[0]);
+
+    canvas.remove(gridGroup);
     canvas.add(oGridGroup);
+    canvas.sendToBack(oGridGroup);
+}
+
+export function changeGridSettings(type, val) {
+    canvas = fabricStore.canvas;
+
+    switch (type) {
+        case 'line-width':
+            fabricStore.grid.lineWidth = val
+            break
+        case 'grid-spacing-vertical':
+            fabricStore.grid.verticalSpacing = val
+            break
+        case 'grid-spacing-horizontal':
+            fabricStore.grid.horizontalSpacing = val
+            break
+    }
+
+    _drawGrid(fabricStore.grid);
 }
