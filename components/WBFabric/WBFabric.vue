@@ -2,9 +2,6 @@
   <div id="main">
     <!-- <DragToolbar v-if="fabricStore.drawingMode" /> -->
     <canvas id="canvas-fabric" ref="fabricJS"></canvas>
-    <div id="panels-container" class="flex flex-col gap-5">
-      <EditTools />
-    </div>
   </div>
 </template>
 
@@ -12,7 +9,6 @@
 import { fabric } from "fabric";
 import applySettings from "./utils/customSettings";
 // import DragToolbar from "./tools/drawing/DragToolbar.vue";
-import EditTools from "./panel/EditTools.vue";
 import { useWBFabric } from "@/stores/wbFabric";
 
 const fabricJS = ref(null);
