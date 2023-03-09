@@ -15,7 +15,7 @@
       <p>
         <label
           ><span>Left:</span>
-          <input type="range" id="left-control" value="300" min="0" max="800"
+          <input type="range" id="left-control" value="0" min="0" max="800"
         /></label>
       </p>
       <p>
@@ -93,7 +93,7 @@ export default {
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 230px;
+  top: 330px;
   left: 10px;
   padding: 10px;
   background: rgb(30, 30, 31);
@@ -106,6 +106,6 @@ export default {
   margin-left: 10px;
   padding: 15px;
   border-left: 1px dotted #aaa;
-  height: 270px;
+  height: 170px;
 }
 </style>

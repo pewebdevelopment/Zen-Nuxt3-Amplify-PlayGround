@@ -22,18 +22,20 @@ class History {
   }
   undo() {
     if (this.current > 0) {
-      
+      if(this.current == this.history.length) --this.current;
+      --this.current;
       this.canvas.clear();
-      const rect = new fabric.Rect(this.history[--this.current]);
+      const rect = new fabric.Rect(this.history[this.current]);
       rect.name='rect';  // for handling stickman event
       this.canvas.add(rect);
       
     }
   }
   redo() {
-    if (this.history.length > this.current) {
+    if (this.history.length > this.current+1) {
+      this.current++;
       this.canvas.clear();
-      const rect = new fabric.Rect(this.history[this.current++]);
+      const rect = new fabric.Rect(this.history[this.current]);
       rect.name='rect';
       this.canvas.add(rect);
       
@@ -47,3 +49,4 @@ class History {
 
 // Default size 49
 export default new History(49);
+

@@ -1,8 +1,9 @@
 <template>
   <div id="main">
-    <DragToolbar v-if="fabricStore.drawingMode" />
+    <!-- <DragToolbar v-if="fabricStore.drawingMode" /> -->
     <canvas id="canvas-fabric" ref="fabricJS"></canvas>
     <div id="panels-container" class="flex flex-col gap-5">
+      <EditTools />
       <historyPanel />
     </div>
   </div>
@@ -11,7 +12,8 @@
 <script setup>
 import { fabric } from "fabric";
 import applySettings from "./utils/customSettings";
-import DragToolbar from "./tools/drawing/DragToolbar.vue";
+// import DragToolbar from "./tools/drawing/DragToolbar.vue";
+import EditTools from "./panel/EditTools.vue";
 import { useWBFabric } from "@/stores/wbFabric";
 import HistoryPanel from "./panel/HistoryPanel";
 
@@ -19,13 +21,10 @@ const fabricJS = ref(null);
 const fabricStore = useWBFabric();
 
 onMounted(() => {
-   
-  const canvas = new fabric.Canvas(fabricJS.value.id);
+  fabricStore.canvas = new fabric.Canvas(fabricJS.value.id);
 
   // To apply custom settings on canvas
-  applySettings(canvas);
-  
-
+  applySettings(fabricStore.canvas);
 });
 </script>
 
