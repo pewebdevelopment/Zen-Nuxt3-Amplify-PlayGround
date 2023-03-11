@@ -3,7 +3,6 @@
     <!-- <DragToolbar v-if="fabricStore.drawingMode" /> -->
     <canvas id="canvas-fabric" ref="fabricJS"></canvas>
     <div id="panels-container" class="flex flex-col gap-5">
-      <EditTools />
       <historyPanel />
     </div>
   </div>
@@ -13,7 +12,6 @@
 import { fabric } from "fabric";
 import applySettings from "./utils/customSettings";
 // import DragToolbar from "./tools/drawing/DragToolbar.vue";
-import EditTools from "./panel/EditTools.vue";
 import { useWBFabric } from "@/stores/wbFabric";
 import HistoryPanel from "./panel/HistoryPanel";
 
