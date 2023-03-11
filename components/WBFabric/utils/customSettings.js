@@ -167,8 +167,8 @@ export default function (canvas) {
 
     // Adding a simple rectangle to canvas
     _addRectangle(canvas);
-    _addPolygon(canvas);
-    _addCircle(canvas);
+    // _addPolygon(canvas);
+    // _addCircle(canvas);
     // Object controls not working until common selection
     // Issue found when importing pdfs
     _workaround(canvas);
