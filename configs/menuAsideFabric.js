@@ -313,5 +313,41 @@ export default [
     to: "",
     label: "Animating Crosses",
     icon: mdiHelpCircle,
-  }
+  },
+  {
+    to: "",
+    label: "Copy",
+    icon: mdiAccountCircle,
+    id: 8
+  },
+  {
+    to: "",
+    label: "Paste",
+    icon: mdiLock,
+    id: 9
+  },
+  {
+    to: "",
+    label: "Discard Selection",
+    icon: mdiSquareEditOutline,
+    id: 10
+  },
+  {
+    to: "",
+    label: "Group",
+    icon: mdiSquareEditOutline,
+    id: 11
+  },
+  {
+    to: "",
+    label: "Ungroup",
+    icon: mdiSquareEditOutline,
+    id: 12
+  },
+  {
+    to: "",
+    label: "Edit polygon",
+    icon: mdiSquareEditOutline,
+    id: 13
+  },
 ];

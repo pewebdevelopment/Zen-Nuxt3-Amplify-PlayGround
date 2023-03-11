@@ -10,7 +10,15 @@ import FabricExtraOptions from "@/components/Asidemenu/FabricExtraOptions.vue";
 import { useAuthStore } from "@/stores/authStore";
 import { useWBFabric } from "@/stores/wbFabric";
 import Modal from "../components/WBFabric/utils/Modal.vue";
-import { renderNewOptions } from "~~/components/WBFabric/utils/utilitySettings";
+import {
+  renderNewOptions, discardSelection,
+  multipleSelect,
+  group,
+  unGroup,
+  Copy,
+  Paste,
+  Edit,
+} from "~~/components/WBFabric/utils/utilitySettings";
 import {
   selectPencil,
   selectCursor,
@@ -94,6 +102,30 @@ const menuClick = (event, item) => {
       renderNewOptions();
       break;
 
+    case 8:
+      Copy();
+      break;
+
+    case 9:
+      Paste();
+      break;
+
+    case 10:
+      discardSelection();
+      break;
+
+    case 11:
+      group();
+      break;
+
+    case 12:
+      unGroup();
+      break;
+
+    case 13:
+      Edit();
+      break;
+
     default:
   }
 };
@@ -104,58 +136,58 @@ const menuClick = (event, item) => {
     <div
       id="pagetop-container"
       :class="{
-        dark: styleStore.darkMode,
-        'lg:overflow-visible': layoutStore.isAsideMobileExpanded,
-      }"
+      dark: styleStore.darkMode,
+      'lg:overflow-visible': layoutStore.isAsideMobileExpanded,
+    }"
       class="overflow-hidden"
     >
       <div
         :class="[
-          layoutAsidePadding,
-          { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
-        ]"
+        layoutAsidePadding,
+        { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
+      ]"
         class="relative pt-14 min-h-screen w-screen transition-position lg:w-screen bg-gray-50 dark:bg-slate-800 dark:text-slate-100"
       >
         <!-- The  Navbar -->
         <!-- <NavBar
-          :menu="menuNavBar"
-          :class="[
-            layoutAsidePadding,
-            { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
-          ]"
-          @menu-click="menuClick"
-        >
-          <NavBarItemPlain
-            display="flex lg:hidden"
-            @click.prevent="layoutStore.asideMobileToggle()"
-          >
-            <BaseIcon
-              :path="
-                layoutStore.isAsideMobileExpanded
-                  ? mdiBackburger
-                  : mdiForwardburger
-              "
-              size="24"
-            />
-          </NavBarItemPlain>
-          <NavBarItemPlain
-            display="hidden lg:flex xl:hidden"
-            @click.prevent="layoutStore.asideLgToggle()"
-          >
-            <BaseIcon
-              :path="layoutStore.isAsideLgActive ? mdiBackburger : mdiMenu"
-              size="24"
-            />
-          </NavBarItemPlain>
-          <NavBarItemPlain use-margin>
-            <FormControl
-              placeholder="Search (ctrl+k)"
-              ctrl-k-focus
-              transparent
-              borderless
-            />
-          </NavBarItemPlain>
-        </NavBar> -->
+                      :menu="menuNavBar"
+                      :class="[
+                        layoutAsidePadding,
+                        { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
+                      ]"
+                      @menu-click="menuClick"
+                    >
+                      <NavBarItemPlain
+                        display="flex lg:hidden"
+                        @click.prevent="layoutStore.asideMobileToggle()"
+                      >
+                        <BaseIcon
+                          :path="
+                            layoutStore.isAsideMobileExpanded
+                              ? mdiBackburger
+                              : mdiForwardburger
+                          "
+                          size="24"
+                        />
+                      </NavBarItemPlain>
+                      <NavBarItemPlain
+                        display="hidden lg:flex xl:hidden"
+                        @click.prevent="layoutStore.asideLgToggle()"
+                      >
+                        <BaseIcon
+                          :path="layoutStore.isAsideLgActive ? mdiBackburger : mdiMenu"
+                          size="24"
+                        />
+                      </NavBarItemPlain>
+                      <NavBarItemPlain use-margin>
+                        <FormControl
+                          placeholder="Search (ctrl+k)"
+                          ctrl-k-focus
+                          transparent
+                          borderless
+                        />
+                      </NavBarItemPlain>
+                    </NavBar> -->
         <!-- The  Premium Aside Menu -->
         <FabricAsideMenu :menu="menuAsideFabric" @menu-click="menuClick" />
 
