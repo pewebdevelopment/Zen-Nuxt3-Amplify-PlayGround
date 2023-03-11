@@ -1,20 +1,30 @@
 <script setup>
 import { computed } from "vue";
-import { mdiForwardburger, mdiBackburger, mdiMenu } from "@mdi/js";
 import { useRouter } from "vue-router";
 import menuAsideFabric from "@/configs/menuAsideFabric";
-import menuNavBar from "@/configs/menuNavBar.js";
 import { useMainStore } from "@/stores/main.js";
 import { useLayoutStore } from "@/stores/layout.js";
 import { useStyleStore } from "@/stores/style.js";
-import BaseIcon from "@/components/Display/BaseIcon.vue";
-import FormControl from "@/components/Forms/FormControl.vue";
-import NavBar from "@/components/NavBar/NavBar.vue";
 import FabricAsideMenu from "@/components/Asidemenu/FabricAsideMenu.vue";
-import NavBarItemPlain from "@/components/NavBar/NavBarItemPlain.vue";
+import FabricExtraOptions from "@/components/Asidemenu/FabricExtraOptions.vue";
 import { useAuthStore } from "@/stores/authStore";
 import { useWBFabric } from "@/stores/wbFabric";
 import Modal from "../components/WBFabric/utils/Modal.vue";
+import {
+  renderNewOptions, discardSelection,
+  multipleSelect,
+  group,
+  unGroup,
+  Copy,
+  Paste,
+  Edit,
+} from "~~/components/WBFabric/utils/utilitySettings";
+import {
+  selectPencil,
+  selectCursor,
+  selectEraser,
+  selectHighlighter,
+} from "@/components/WBFabric/tools/drawing/toolSettings";
 
 useMainStore().setUser({
   name: "Zenith Physics",
@@ -65,29 +75,55 @@ const menuClick = (event, item) => {
 
   switch (item.id) {
     case 1:
-      // console.log("id", 1);
-      fabricStore.toggleDrawingMode();
+      selectCursor();
       break;
 
     case 2:
-      console.log("id", 2);
+      selectPencil();
       break;
 
     case 3:
-      // console.log("id", 3);
-      fabricStore.toggleModal();
+      selectHighlighter();
       break;
 
     case 4:
-      console.log("id", 4);
+      fabricStore.toggleModal();
       break;
 
     case 5:
-      console.log("id", 5);
+      selectEraser();
       break;
 
     case 6:
       console.log("id", 6);
+      break;
+
+    case 7:
+      renderNewOptions();
+      break;
+
+    case 8:
+      Copy();
+      break;
+
+    case 9:
+      Paste();
+      break;
+
+    case 10:
+      discardSelection();
+      break;
+
+    case 11:
+      group();
+      break;
+
+    case 12:
+      unGroup();
+      break;
+
+    case 13:
+      Edit();
       break;
 
     default:
@@ -98,61 +134,65 @@ const menuClick = (event, item) => {
 <template>
   <div>
     <div
+      id="pagetop-container"
       :class="{
-        dark: styleStore.darkMode,
-        'overflow-hidden lg:overflow-visible':
-          layoutStore.isAsideMobileExpanded,
-      }"
+      dark: styleStore.darkMode,
+      'lg:overflow-visible': layoutStore.isAsideMobileExpanded,
+    }"
+      class="overflow-hidden"
     >
       <div
         :class="[
-          layoutAsidePadding,
-          { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
-        ]"
-        class="pt-14 min-h-screen w-screen transition-position lg:w-auto bg-gray-50 dark:bg-slate-800 dark:text-slate-100"
+        layoutAsidePadding,
+        { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
+      ]"
+        class="relative pt-14 min-h-screen w-screen transition-position lg:w-screen bg-gray-50 dark:bg-slate-800 dark:text-slate-100"
       >
         <!-- The  Navbar -->
-        <NavBar
-          :menu="menuNavBar"
-          :class="[
-            layoutAsidePadding,
-            { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
-          ]"
-          @menu-click="menuClick"
-        >
-          <NavBarItemPlain
-            display="flex lg:hidden"
-            @click.prevent="layoutStore.asideMobileToggle()"
-          >
-            <BaseIcon
-              :path="
-                layoutStore.isAsideMobileExpanded
-                  ? mdiBackburger
-                  : mdiForwardburger
-              "
-              size="24"
-            />
-          </NavBarItemPlain>
-          <NavBarItemPlain
-            display="hidden lg:flex xl:hidden"
-            @click.prevent="layoutStore.asideLgToggle()"
-          >
-            <BaseIcon
-              :path="layoutStore.isAsideLgActive ? mdiBackburger : mdiMenu"
-              size="24"
-            />
-          </NavBarItemPlain>
-          <NavBarItemPlain use-margin>
-            <FormControl
-              placeholder="Search (ctrl+k)"
-              ctrl-k-focus
-              transparent
-              borderless
-            />
-          </NavBarItemPlain>
-        </NavBar>
+        <!-- <NavBar
+                      :menu="menuNavBar"
+                      :class="[
+                        layoutAsidePadding,
+                        { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
+                      ]"
+                      @menu-click="menuClick"
+                    >
+                      <NavBarItemPlain
+                        display="flex lg:hidden"
+                        @click.prevent="layoutStore.asideMobileToggle()"
+                      >
+                        <BaseIcon
+                          :path="
+                            layoutStore.isAsideMobileExpanded
+                              ? mdiBackburger
+                              : mdiForwardburger
+                          "
+                          size="24"
+                        />
+                      </NavBarItemPlain>
+                      <NavBarItemPlain
+                        display="hidden lg:flex xl:hidden"
+                        @click.prevent="layoutStore.asideLgToggle()"
+                      >
+                        <BaseIcon
+                          :path="layoutStore.isAsideLgActive ? mdiBackburger : mdiMenu"
+                          size="24"
+                        />
+                      </NavBarItemPlain>
+                      <NavBarItemPlain use-margin>
+                        <FormControl
+                          placeholder="Search (ctrl+k)"
+                          ctrl-k-focus
+                          transparent
+                          borderless
+                        />
+                      </NavBarItemPlain>
+                    </NavBar> -->
         <!-- The  Premium Aside Menu -->
         <FabricAsideMenu :menu="menuAsideFabric" @menu-click="menuClick" />
+
+        <FabricExtraOptions />
+
         <Teleport to="body">
           <!-- use the modal component, pass in the prop -->
           <modal :show="fabricStore.showModal">

@@ -14,39 +14,43 @@ import {
   mdiMessage,
   mdiFastForwardOutline,
   mdiBook,
-  mdiDraw,
   mdiFilePdfBox,
+  mdiPencil,
+  mdiEraser,
+  mdiMarker,
+  mdiFormatColorFill,
+  mdiCursorDefaultOutline
 } from "@mdi/js";
 
 export default [
   {
     to: "",
-    label: "Draw",
-    icon: mdiDraw,
+    label: "Move",
+    icon: mdiCursorDefaultOutline,
     id: 1
   },
   {
     to: "",
-    label: "Random",
-    icon: mdiBook,
+    label: "Pencil",
+    icon: mdiPencil,
     id: 2
+  },
+  {
+    to: "",
+    label: "Highlighter",
+    icon: mdiMarker,
+    id: 3
   },
   {
     to: "",
     label: "Import PDF",
     icon: mdiFilePdfBox,
-    id: 3
-  },
-  {
-    to: "",
-    label: "Custom Filter Swap Colors",
-    icon: mdiBallot,
     id: 4
   },
   {
     to: "",
-    label: "Composed Filter for duotone",
-    icon: mdiViewQuilt,
+    label: "Eraser",
+    icon: mdiEraser,
     id: 5
   },
   {
@@ -309,5 +313,41 @@ export default [
     to: "",
     label: "Animating Crosses",
     icon: mdiHelpCircle,
-  }
+  },
+  {
+    to: "",
+    label: "Copy",
+    icon: mdiAccountCircle,
+    id: 8
+  },
+  {
+    to: "",
+    label: "Paste",
+    icon: mdiLock,
+    id: 9
+  },
+  {
+    to: "",
+    label: "Discard Selection",
+    icon: mdiSquareEditOutline,
+    id: 10
+  },
+  {
+    to: "",
+    label: "Group",
+    icon: mdiSquareEditOutline,
+    id: 11
+  },
+  {
+    to: "",
+    label: "Ungroup",
+    icon: mdiSquareEditOutline,
+    id: 12
+  },
+  {
+    to: "",
+    label: "Edit polygon",
+    icon: mdiSquareEditOutline,
+    id: 13
+  },
 ];

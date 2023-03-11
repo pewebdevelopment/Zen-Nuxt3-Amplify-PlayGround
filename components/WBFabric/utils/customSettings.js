@@ -11,19 +11,77 @@ function _setCanvasProperties(canvas) {
     fabric.Object.prototype.cornerColor = "#37403a";
     fabric.Object.prototype.cornerStyle = "circle";
 
-    const par = document.getElementById("main");
+    const par = document.getElementById("pagetop-container");
     canvas.setDimensions({ width: par.offsetWidth, height: par.offsetHeight });
-    fabricStore.canvas = canvas;
+    canvas.hoverCursor = 'pointer';
+    // fabricStore.canvas = canvas;
 }
 
 function _addRectangle(canvas) {
     const rect = new fabric.Rect({
+        top: 300,
+        left: 400,
         fill: "red",
         width: 200,
         height: 200,
     });
+
     canvas.add(rect);
-    canvas.setActiveObject(rect);
+    // canvas.setActiveObject(rect);
+}
+
+function _addPolygon(canvas) {
+    var points = [{
+        x: 3, y: 4
+    }, {
+        x: 16, y: 3
+    }, {
+        x: 30, y: 5
+    }, {
+        x: 25, y: 55
+    }, {
+        x: 19, y: 44
+    }, {
+        x: 15, y: 30
+    }, {
+        x: 15, y: 55
+    }, {
+        x: 9, y: 55
+    }, {
+        x: 6, y: 53
+    }, {
+        x: -2, y: 55
+    }, {
+        x: -4, y: 40
+    }, {
+        x: 0, y: 20
+    }]
+    let polygon = new fabric.Polygon(points, {
+        left: 1000,
+        top: 50,
+        fill: '#D81B60',
+        strokeWidth: 4,
+        stroke: 'green',
+        scaleX: 4,
+        scaleY: 4,
+        objectCaching: false,
+        transparentCorners: false,
+        cornerColor: 'blue',
+    });
+    // canvas.viewportTransform = [0.7, 0, 0, 0.7, -50, 50];
+    canvas.add(polygon);
+}
+
+function _addCircle(canvas) {
+    const circle = new fabric.Circle({
+        fill: "red",
+        radius: 100,
+        top: 100,
+        left: 400,
+        strokeWidth: 4,
+        stroke: "green",
+    });
+    canvas.add(circle);
 }
 
 const customControls = {
@@ -82,9 +140,10 @@ function _workaround(canvas) {
 export default function (canvas) {
     _setCanvasProperties(canvas);
 
+    _addPolygon(canvas);
     // Adding a simple rectangle to canvas
     _addRectangle(canvas);
-
+    _addCircle(canvas);
     // Object controls not working until common selection
     // Issue found when importing pdfs
     _workaround(canvas);
