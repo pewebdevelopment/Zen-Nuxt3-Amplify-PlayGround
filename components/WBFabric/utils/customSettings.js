@@ -140,13 +140,13 @@ function _workaround(canvas) {
 export default function (canvas) {
     _setCanvasProperties(canvas);
 
-    _addPolygon(canvas);
-    // Adding a simple rectangle to canvas
-    _addRectangle(canvas);
-    _addCircle(canvas);
     // Object controls not working until common selection
     // Issue found when importing pdfs
     _workaround(canvas);
+
+    _addPolygon(canvas);
+    _addRectangle(canvas);
+    _addCircle(canvas);
 
     // Adding custom controls
     customControls._deleteControl()
