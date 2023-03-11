@@ -18,6 +18,7 @@ import {
   Copy,
   Paste,
   Edit,
+  renderSolarSystem
 } from "~~/components/WBFabric/utils/utilitySettings";
 import {
   selectPencil,
@@ -125,6 +126,11 @@ const menuClick = (event, item) => {
     case 13:
       Edit();
       break;
+
+    case 14:
+      renderSolarSystem();
+      break;
+
 
     default:
   }

@@ -203,6 +203,7 @@ export default [
     to: "",
     label: "Solar System",
     icon: mdiFastForwardOutline,
+    id:14
   },
   {
     to: "",
