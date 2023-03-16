@@ -12,6 +12,7 @@ frontend:
     preBuild:
       commands:
         - npm install
+        - npm run prepBuild
         - npm ci # ci = clean install, its needed to intall the exact packages on linux
     build:
       commands:
