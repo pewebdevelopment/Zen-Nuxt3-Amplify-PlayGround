@@ -4,17 +4,9 @@ import { schema } from './schema';
 
 
 
-const { SuperAdmin, Admin, Educarer, Guardian, Educator, Student, Meeting, Attendee, GuardianStudent, Response } = initSchema(schema);
+const { Whiteboard, User } = initSchema(schema);
 
 export {
-  SuperAdmin,
-  Admin,
-  Educarer,
-  Guardian,
-  Educator,
-  Student,
-  Meeting,
-  Attendee,
-  GuardianStudent,
-  Response
+  Whiteboard,
+  User
 };

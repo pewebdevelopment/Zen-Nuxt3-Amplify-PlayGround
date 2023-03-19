@@ -1,11 +1,24 @@
-import { useWBFabric } from "@/stores/wbFabric";
-const fabricStore = useWBFabric();
+import { DataStore } from "@aws-amplify/datastore";
+import { Whiteboard } from "@/models";
+
+let models;
+
+async function setup() {
+    try {
+        models = await DataStore.query(Whiteboard);
+        console.log(models);
+    } catch (e) {
+        console.log(e);
+    }
+}
 
 function _setCanvasProperties(canvas) {
-    canvas.setBackgroundColor(
-        "rgba(255, 255, 255)",
-        canvas.renderAll.bind(canvas)
-    );
+    canvas.loadFromJSON(models[0].canvas)
+
+    // canvas.setBackgroundColor(
+    //     "rgba(255, 255, 255)",
+    //     canvas.renderAll.bind(canvas)
+    // );
 
     fabric.Object.prototype.transparentCorners = false;
     fabric.Object.prototype.cornerColor = "#37403a";
@@ -137,16 +150,18 @@ function _workaround(canvas) {
     });
 }
 
-export default function (canvas) {
+export default async function (canvas) {
+    await setup();
+
     _setCanvasProperties(canvas);
 
     // Object controls not working until common selection
     // Issue found when importing pdfs
     _workaround(canvas);
 
-    _addPolygon(canvas);
-    _addRectangle(canvas);
-    _addCircle(canvas);
+    // _addPolygon(canvas);
+    // _addRectangle(canvas);
+    // _addCircle(canvas);
 
     // Adding custom controls
     customControls._deleteControl()
