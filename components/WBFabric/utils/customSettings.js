@@ -20,38 +20,27 @@ function _setCanvasProperties(canvas) {
 }
 
 function _addRectangle(canvas) {
-    
-    var modifiedHandler = function (evt) {
-        if(canvas.getObjects()[0].name==='rect'){   // for handling stickman event
-
-            var modifiedObject = evt.target;
-            const newrect = 
-            {
-                
-                fill: modifiedObject.get('fill'),
-                width: modifiedObject.get('width'),
-                height: modifiedObject.get('height'),
-                left: modifiedObject.get('left'),
-                top:modifiedObject.get('top'),
-                scaleX:modifiedObject.get('scaleX'),
-                scaleY:modifiedObject.get('scaleY'),
-                
-            };
-            
-            history.add(newrect,canvas);
-        }
-        
-        
-    };
-    canvas.on('object:modified', modifiedHandler);
-    history.add({
+    canvas.on(
+        'object:added', function () {
+        // console.log('added');
+        history.add(canvas);
+    }
+    );
+    canvas.on("object:modified", function () {
+        // console.log('modified');
+            history.add(canvas);
+    });
+    const rect = new fabric.Rect({
         fill: "red",
         width: 200,
         height: 200,
-        left: 0
-    },canvas);
+        left: 0,
+        selectable: true,
+        resizable: true, 
+        hasControls: true 
+    });
+    canvas.add(rect);
     MouseEvents.add(canvas);
-    // canvas.add(rect);
     // canvas.setActiveObject(rect);
 }
 

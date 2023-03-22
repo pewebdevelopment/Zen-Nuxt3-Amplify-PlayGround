@@ -1,52 +1,55 @@
-import { fabric } from "fabric";
 class History {
-  constructor(limit) {
-    this.limit = limit;
-    this.clear();
+  constructor() {
+    this.currentStateIndex = -1;
+    this.history = [];
   }
-  add(action,canvas) {
-    if (
-      this.history.length >= this.limit ||
-      this.current == this.history.length - 1
-    ) {
-      this.history.shift();
-    }
-    this.history.push(action);
-    const rect = new fabric.Rect(action);
+  add(canvas) {
     this.canvas=canvas;
-    
-    this.canvas.clear();
-    rect.name='rect';
-    canvas.add(rect);
-    this.current = this.history.length;
+    if (this.currentStateIndex < this.history.length - 1) {
+      this.history.splice(this.currentStateIndex + 1);
+    }
+    let temp = JSON.stringify(canvas.toJSON());
+    temp=JSON.parse(JSON.stringify(canvas));
+    temp.objects=temp.objects.filter((data)=>data.type!=='object');
+    temp=JSON.stringify(temp);
+    // // Add the current state to the history array
+    this.history.push(temp);
+    // // Update the current state index
+    this.currentStateIndex = this.history.length - 1;
   }
   undo() {
-    if (this.current > 0) {
-      if(this.current == this.history.length) --this.current;
-      --this.current;
-      this.canvas.clear();
-      const rect = new fabric.Rect(this.history[this.current]);
-      rect.name='rect';  // for handling stickman event
-      this.canvas.add(rect);
-      
+    if (this.currentStateIndex > 0) {
+      this.canvas.off('object:added');
+      this.currentStateIndex--;
+      // this.canvas.clear();
+      this.canvas.loadFromJSON(this.history[this.currentStateIndex], () => {
+        // Re-add the object:added event listener after the state has been loaded
+        this.canvas.on('object:added', () => {
+          // Add the current state to the history array
+          this.add(this.canvas);
+        });
+        // Render the canvas after the state has been loaded
+        this.canvas.renderAll();
+      });
     }
   }
   redo() {
-    if (this.history.length > this.current+1) {
-      this.current++;
-      this.canvas.clear();
-      const rect = new fabric.Rect(this.history[this.current]);
-      rect.name='rect';
-      this.canvas.add(rect);
-      
+    if (this.currentStateIndex < this.history.length - 1) {
+      this.canvas.off('object:added');
+      this.currentStateIndex++;
+      // this.canvas.clear();
+      this.canvas.loadFromJSON(this.history[this.currentStateIndex], () => {
+        // Re-add the object:added event listener after the state has been loaded
+        this.canvas.on('object:added', () => {
+          // Add the current state to the history array
+          this.add(this.canvas);
+        });
+        // Render the canvas after the state has been loaded
+        this.canvas.renderAll();
+      });
     }
-  }
-  clear() {
-    this.history = [];
-    this.current = 0;
   }
 }
 
-// Default size 49
-export default new History(49);
+export default new History();
 
