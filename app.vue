@@ -3,8 +3,8 @@ import { useStyleStore } from "@/stores/style.js";
 import { darkModeKey, styleKey } from "@/configs/config";
 import { useMainStore } from "@/stores/main.js";
 import "@/assets/css/main.css";
-import { Amplify } from "aws-amplify";
-import awsExports from "@/aws-exports";
+// import { Amplify } from "aws-amplify";
+// import awsExports from "@/aws-exports";
 
 const mainStore = useMainStore();
 const styleStore = useStyleStore();
@@ -22,7 +22,7 @@ onMounted(() => {
   }
   loading.value = false;
 
-  Amplify.configure(awsExports);
+  // Amplify.configure(awsExports);
 });
 useHead({
   titleTemplate: (titleChunk) => {
