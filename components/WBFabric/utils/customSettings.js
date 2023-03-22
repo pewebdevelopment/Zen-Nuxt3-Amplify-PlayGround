@@ -1,13 +1,26 @@
-import { useWBFabric } from "@/stores/wbFabric";
+import { DataStore } from "@aws-amplify/datastore";
+import { Whiteboard } from "@/models";
+
 import history from "@/components/WBFabric/tools/history";
 import MouseEvents from "../tools/mouseEvent";
-const fabricStore = useWBFabric();
+let models;
+
+async function setup() {
+    try {
+        models = await DataStore.query(Whiteboard);
+        console.log(models);
+    } catch (e) {
+        console.log(e);
+    }
+}
 
 function _setCanvasProperties(canvas) {
-    canvas.setBackgroundColor(
-        "rgba(255, 255, 255)",
-        canvas.renderAll.bind(canvas)
-    );
+    canvas.loadFromJSON(models[0].canvas)
+
+    // canvas.setBackgroundColor(
+    //     "rgba(255, 255, 255)",
+    //     canvas.renderAll.bind(canvas)
+    // );
 
     fabric.Object.prototype.transparentCorners = false;
     fabric.Object.prototype.cornerColor = "#37403a";
@@ -18,8 +31,7 @@ function _setCanvasProperties(canvas) {
     canvas.hoverCursor = 'pointer';
     // fabricStore.canvas = canvas;
 }
-
-function _addRectangle(canvas) {
+function _undoredo(canvas){
     canvas.on(
         'object:added', function () {
         // console.log('added');
@@ -30,6 +42,9 @@ function _addRectangle(canvas) {
         // console.log('modified');
             history.add(canvas);
     });
+
+}
+function _addRectangle(canvas) {
     const rect = new fabric.Rect({
         fill: "red",
         width: 200,
@@ -151,16 +166,20 @@ function _workaround(canvas) {
     });
 }
 
-export default function (canvas) {
-    _setCanvasProperties(canvas);
+export default async function (canvas) {
+    await setup();
 
+    _setCanvasProperties(canvas);
+    _undoredo(canvas);
     // Adding a simple rectangle to canvas
     _addRectangle(canvas);
-    // _addPolygon(canvas);
-    // _addCircle(canvas);
     // Object controls not working until common selection
     // Issue found when importing pdfs
     _workaround(canvas);
+
+    // _addPolygon(canvas);
+    // _addRectangle(canvas);
+    // _addCircle(canvas);
 
     // Adding custom controls
     customControls._deleteControl()
