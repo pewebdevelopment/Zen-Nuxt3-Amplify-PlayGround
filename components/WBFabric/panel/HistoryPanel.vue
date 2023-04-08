@@ -2,7 +2,7 @@
   <div class="historyPanel">
     <panelToolIcon @click.native="undo" icon="undo" />
     <panelToolIcon @click.native="redo" icon="redo" />
-    <button class="text-white" id="0" @click="handleChange">mouse opacity</button>
+    <!-- <button class="text-white" id="0" @click="handleChange">mouse opacity</button>
     <button class="text-white" id="1" @click="handleChange">drag drop</button>
     <button class="text-white" id="2" @click="handleChange">Controls</button>
     <div class="controls">
@@ -61,7 +61,7 @@
         /></label>
       </p>
     </div>
-    <button class="text-white" id="3" @click="handleChange">Stickman</button>
+    <button class="text-white" id="3" @click="handleChange">Stickman</button> -->
   </div>
 </template>
 

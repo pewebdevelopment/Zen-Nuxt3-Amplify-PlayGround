@@ -44,6 +44,9 @@ function _undoredo(canvas){
     });
 
 }
+function _mouseEvents(canvas){
+    MouseEvents.add(canvas);
+}
 function _addRectangle(canvas) {
     const rect = new fabric.Rect({
         fill: "red",
@@ -55,7 +58,7 @@ function _addRectangle(canvas) {
         hasControls: true 
     });
     canvas.add(rect);
-    MouseEvents.add(canvas);
+    // MouseEvents.add(canvas);
     // canvas.setActiveObject(rect);
 }
 
@@ -171,8 +174,7 @@ export default async function (canvas) {
 
     _setCanvasProperties(canvas);
     _undoredo(canvas);
-    // Adding a simple rectangle to canvas
-    _addRectangle(canvas);
+    // _mouseEvents(canvas);
     // Object controls not working until common selection
     // Issue found when importing pdfs
     _workaround(canvas);
