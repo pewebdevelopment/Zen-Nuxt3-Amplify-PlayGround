@@ -1,9 +1,13 @@
+import { useWBFabric } from "~~/stores/wbFabric";
+let fabricStore = useWBFabric();
+
 class History {
   constructor() {
     this.currentStateIndex = -1;
     this.history = [];
   }
-  add(canvas) {
+  add() {
+    const canvas = fabricStore.canvas;
     this.canvas=canvas;
     if (this.currentStateIndex < this.history.length - 1) {
       this.history.splice(this.currentStateIndex + 1);
@@ -31,6 +35,7 @@ class History {
         // Render the canvas after the state has been loaded
         this.canvas.renderAll();
       });
+      fabricStore.canvas=this.canvas;
     }
   }
   redo() {
@@ -48,6 +53,7 @@ class History {
         this.canvas.renderAll();
       });
     }
+    fabricStore.canvas=this.canvas;
   }
 }
 

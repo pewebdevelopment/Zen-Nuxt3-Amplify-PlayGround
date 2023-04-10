@@ -1,14 +1,16 @@
 import { fabric } from "fabric";
+import { useWBFabric } from "~~/stores/wbFabric";
+let fabricStore = useWBFabric();
 class MouseEvents {
   constructor() {
     this.clear();
   }
-  add(canvas){
-    this.canvas=canvas;    
+  add(){
+    this.canvas=fabricStore.canvas;    
     this.selectEvent('2');
 }
 selectEvent(id) {
-    
+  this.canvas=fabricStore.canvas;    
     const temp=this.canvas.getObjects();
     this.rect=temp[0];
     this.current=id;
@@ -74,7 +76,7 @@ selectEvent(id) {
       
         var skewYControl = $('skewY-control');
         skewYControl.oninput = function() {
-            console.log(this,canvas);
+            // console.log(this,canvas);
           rect.set('skewY', parseInt(this.value, 10)).setCoords();
           canvas.requestRenderAll();
         };
@@ -99,7 +101,7 @@ selectEvent(id) {
     else if(this.current==='3'){
       const canvas=this.canvas;
       // canvas.clear();
-      console.log(canvas);
+      // console.log(canvas);
       canvas.remove(...canvas.getObjects());
 
       function makeCircle(left, top, line1, line2, line3, line4) {
@@ -156,7 +158,7 @@ selectEvent(id) {
         p.line2 && p.line2.set({ 'x1': p.left, 'y1': p.top });
         p.line3 && p.line3.set({ 'x1': p.left, 'y1': p.top });
         p.line4 && p.line4.set({ 'x1': p.left, 'y1': p.top });
-        console.log(canvas.getObjects(),p);
+        // console.log(canvas.getObjects(),p);
         canvas.renderAll();
       }
       canvas.on('object:moving', stickMovement);

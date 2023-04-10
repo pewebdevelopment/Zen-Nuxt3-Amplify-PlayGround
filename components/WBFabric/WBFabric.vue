@@ -3,7 +3,9 @@
     <!-- <DragToolbar v-if="fabricStore.drawingMode" /> -->
     <canvas id="canvas-fabric" ref="fabricJS"></canvas>
     <div id="panels-container" class="flex flex-col gap-5">
-      <historyPanel />
+      <div v-if="fabricStore.showMousePanel">
+        <historyPanel />
+      </div>
     </div>
   </div>
 </template>

@@ -7,6 +7,7 @@ const state = () => ({
   toolSettings: false,
   selectedTool: 'pencil',
   background: '#ffffff',
+  showMousePanel:false,
   pencil: {
     width: 5,
     color: '#000',

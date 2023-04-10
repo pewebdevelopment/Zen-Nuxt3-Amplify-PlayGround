@@ -1,8 +1,8 @@
 <template>
   <div class="historyPanel">
-    <panelToolIcon @click.native="undo" icon="undo" />
-    <panelToolIcon @click.native="redo" icon="redo" />
-    <!-- <button class="text-white" id="0" @click="handleChange">mouse opacity</button>
+    <!-- <panelToolIcon @click.native="redo" icon="redo" />
+    <panelToolIcon @click.native="undo" icon="undo" /> -->
+    <button class="text-white" id="0" @click="handleChange">mouse opacity</button>
     <button class="text-white" id="1" @click="handleChange">drag drop</button>
     <button class="text-white" id="2" @click="handleChange">Controls</button>
     <div class="controls">
@@ -32,7 +32,7 @@
             id="scale-control"
             value="1"
             min="0.1"
-            max="3"
+            max="10"
             step="0.1"
         /></label>
       </p>
@@ -61,7 +61,8 @@
         /></label>
       </p>
     </div>
-    <button class="text-white" id="3" @click="handleChange">Stickman</button> -->
+    <button class="text-white" id="3" @click="handleChange">Stickman</button>
+    <button class="text-white" id="4" @click="handlePanel">Close</button>
   </div>
 </template>
 
@@ -69,6 +70,9 @@
 import PanelToolIcon from "./PanelToolIcon";
 import history from "@/components/WBFabric/tools/history";
 import MouseEvents from "@/components/WBFabric/tools/mouseEvent";
+import { useWBFabric } from "@/stores/wbFabric";
+const fabricStore = useWBFabric();
+if(fabricStore.showMousePanel)MouseEvents.add();
 export default {
   components: {
     panelToolIcon: PanelToolIcon,
@@ -84,6 +88,9 @@ export default {
       // console.log(e.target.id);
       MouseEvents.selectEvent(e.target.id);
     },
+    handlePanel(){
+      fabricStore.showMousePanel=false;
+    }
   },
 };
 </script>

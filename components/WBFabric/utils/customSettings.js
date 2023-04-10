@@ -1,10 +1,10 @@
 import { DataStore } from "@aws-amplify/datastore";
 import { Whiteboard } from "@/models";
-
+import { useWBFabric } from "~~/stores/wbFabric";
 import history from "@/components/WBFabric/tools/history";
 import MouseEvents from "../tools/mouseEvent";
 let models;
-
+let fabricStore = useWBFabric();
 async function setup() {
     try {
         models = await DataStore.query(Whiteboard);
@@ -32,20 +32,22 @@ function _setCanvasProperties(canvas) {
     // fabricStore.canvas = canvas;
 }
 function _undoredo(canvas){
+    // const canvas = fabricStore.canvas;
     canvas.on(
         'object:added', function () {
         // console.log('added');
-        history.add(canvas);
+        history.add();
     }
     );
     canvas.on("object:modified", function () {
         // console.log('modified');
-            history.add(canvas);
+            history.add();
     });
 
 }
 function _mouseEvents(canvas){
-    MouseEvents.add(canvas);
+    // const canvas = fabricStore.canvas;
+    if(fabricStore.showMousePanel)MouseEvents.add();
 }
 function _addRectangle(canvas) {
     const rect = new fabric.Rect({
@@ -174,7 +176,7 @@ export default async function (canvas) {
 
     _setCanvasProperties(canvas);
     _undoredo(canvas);
-    // _mouseEvents(canvas);
+    _mouseEvents(canvas);
     // Object controls not working until common selection
     // Issue found when importing pdfs
     _workaround(canvas);
